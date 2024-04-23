@@ -1,0 +1,28 @@
+@font-face {
+    font-family: "SBSans  Sans Display Light";
+    src: url("https://db.onlinewebfonts.com/t/2d130488c7306881cf236b40ea2a1020.woff2")format("woff2");
+}
+
+@font-face {
+    font-family: "SB Sans Display Thin";
+    src: url("https://db.onlinewebfonts.com/t/b11e59642c941f222ac9b750f9024e46.woff2")format("woff2");
+}
+
+body {
+   background-color: black;
+}
+
+h1 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 54;
+    font-weight: bold;
+}
+
+h2 {
+    font-family: 'SBSans  Sans Display Light';
+}
+
+h3 {
+    font-family: "SBSans  Sans Display Light";
+    font-weight: lighter;
+}
