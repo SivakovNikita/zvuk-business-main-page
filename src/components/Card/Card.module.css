@@ -23,11 +23,12 @@
     position: absolute;
     width: 80px;
     height: 108px;
-    background-image: url(../../../public/images/playlist_cards/pop_small.png);
+    /* background-image: url(../../../public/images/playlist_cards/pop_small.png); */
     background-size: cover;
     background-position: center;
     bottom: 24px;
     right: 21px;
+    border: 0cap;
 }
 
 .text_container {
