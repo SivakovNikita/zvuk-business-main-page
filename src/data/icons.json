@@ -1,0 +1,19 @@
+{
+    "icons": {
+        "music": {
+            "src": "./images/icons/music.png",
+            "alt": "muscic",
+            "text": "1 млн треков"
+        },
+        "waves": {
+            "src": "./images/icons/waves.png",
+            "alt": "waves",
+            "text": "Плейлисты с концепцией"
+        },
+        "play": {
+            "src": "./images/icons/play.png",
+            "alt": "play",
+            "text": "Решение «Под ключ»"
+        }
+    }
+}

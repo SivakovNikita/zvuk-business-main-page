@@ -1,13 +1,15 @@
 import React from 'react';
 import Button from '../components/Button/Button';
-import Card from '../components/Card/Card';
+import Gallery from '../components/Gallery/Gallery';
+import Icons from '../components/Icons/Icons'
 import '../../public/global.css';
 
 
 function MyApp() {
     return (
       <>
-        <Card />
+        <Icons />
+        <Gallery />
         <Button />
       </>
     );

@@ -5,4 +5,11 @@
     border-radius: 30px;
     border: none;
     color: white;
+    cursor: pointer;
+    
+}
+
+.button:hover {
+    background-color: #00907a;
+    transition: 1s;
 }

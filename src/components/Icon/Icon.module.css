@@ -1,0 +1,29 @@
+.icon {
+    object-fit: contain;
+}
+
+.icon_container {
+    margin: 3px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+}
+
+.icon_text_container {
+    width: 102px;
+    height: 30px;
+    padding: 3px 1px 3px 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon_text {
+    color: white;
+    font-family: SBSansText-Regular;
+    font-size: 12px;
+    line-height: 125%;
+    margin: 0;
+}
