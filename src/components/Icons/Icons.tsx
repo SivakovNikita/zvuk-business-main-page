@@ -1,24 +1,19 @@
+import React from 'react';  
 import Icon from "../Icon/Icon";
 import styles from "./Icons.module.css";
 
-function Icons(){
+const Icons = ({ iconsData }) => {
+    
     return (
         <div className={styles.icons_container}>
-            <Icon
-                src={"./images/icons/music.png"}
-                text={`1 млн треков`}
-                alt={"music"}
-            />
-            <Icon
-                src={"./images/icons/play.png"}
-                text={"Решение «Под ключ»"}
-                alt={"play"}
-            />
-            <Icon
-                src={"./images/icons/waves.png"}
-                text={"Плейлисты с концепцией"}
-                alt={"wave"}
-            />
+            {iconsData.map((data) => (
+                <Icon
+                    src={data.src}
+                    text={data.text}
+                    alt={data.alt}
+                    key={data.id}
+                />
+            ))}
         </div>
     )
 };

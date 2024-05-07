@@ -1,13 +1,21 @@
 import React from 'react';
 import styles from './Icon.module.css';
+import Image from 'next/image'
 
-function icon({ alt, text, src = './images/icons/music.png'}) {
+interface IconComponentProps {
+    alt: string, 
+    text: string, 
+    src: string
+}
+
+const icon = ({ alt, text, src }: IconComponentProps) => {
     return (
-        <div className={styles.icon_container}>  
-            <img 
-                className={styles.icon} 
-                alt={alt}
+        <div className={styles.icon_container}>
+            <Image
                 src={src}
+                width={20}
+                height={20}
+                alt={alt}
             />
             <div className={styles.icon_text_container }>
                 <p className={styles.icon_text}>{text}</p>

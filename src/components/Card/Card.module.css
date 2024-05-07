@@ -3,7 +3,6 @@
     height: 420px;
     border-radius: 8px;
     border: none;
-    background-image: url(../../../public/images/cards/cafe.png);
     position: relative;
     background-size: cover;
     background-position: center;
@@ -23,12 +22,10 @@
     position: absolute;
     width: 80px;
     height: 108px;
-    /* background-image: url(../../../public/images/playlist_cards/pop_small.png); */
     background-size: cover;
     background-position: center;
     bottom: 24px;
     right: 21px;
-    border: 0cap;
 }
 
 .text_container {
@@ -42,12 +39,12 @@
     color: white;
 }
 
-.text_container_heading_2 {
+.text_container_title {
     margin: 0;
     font-size: 20px;
 }
 
-.text_container_heading_3 {
+.text_container_subtitle {
     margin: 0;
     font-size: 16px;
 }

@@ -1,22 +1,31 @@
 import React from 'react';
 import styles from './Card.module.css';
+import Image from 'next/image';
 
-function Card ({text="для кафе", palylistSrc }) {
+interface CardComponentProps {
+    text: string, 
+    playlistImgSrc: string, 
+    backgroundImgSrc: string
+}
+
+const Card = ({text, playlistImgSrc, backgroundImgSrc}: CardComponentProps) => {
+
     return (
-    <>
-        <div className={styles.background}>
+        <div className={styles.background} style={{"background-image": "url(" + `${backgroundImgSrc}` +")" }}>
                 <div className={styles.transparent_block}>
                         <div className={styles.text_container}>
-                            <p className={styles.text_container_heading_2}>Музыка</p>
-                            <p className={styles.text_container_heading_3}>{text}</p>
+                            <p className={styles.text_container_title} >Музыка</p>
+                            <p className={styles.text_container_subtitle}>{text}</p>
                         </div>
-                        <img 
-                            src={palylistSrc} 
-                            className={styles.playlist_image}>
-                        </img>
+                        <Image 
+                            src={playlistImgSrc}
+                            className={styles.playlist_image}
+                            width={80}
+                            height={108}
+                            alt="плейлист для бизнеса"
+                        />
                 </div>
         </div>
-    </>
     )
 }
 

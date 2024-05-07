@@ -1,5 +1,7 @@
 import style from './style.module.css';
 
-export default function () {
+const Button = () => {
     return <button className={style.button}>Подключить</button>
 };
+
+export default Button;
