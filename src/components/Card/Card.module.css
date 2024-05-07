@@ -2,6 +2,7 @@
     width: 320px;
     height: 420px;
     border-radius: 8px;
+    background-image: var(--bg-img-src);
     border: none;
     position: relative;
     background-size: cover;

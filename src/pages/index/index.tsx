@@ -1,10 +1,9 @@
 import React from 'react';
-import Button from '../src/components/Button/Button';
-import Gallery from '../src/components/Gallery/Gallery';
-import Icons from '../src/components/Icons/Icons'
-import '../public/global.css';
-import { cardsData } from "./galleryData.js";
-import { iconsData } from "./iconsData.js"
+import Button from '../../components/Button/Button';
+import Gallery from '../../components/Gallery/Gallery';
+import Icons from '../../components/Icons/Icons'
+import { cardsData } from "./galleryData";
+import { iconsData } from "./iconsData";
 
 function MyApp() {
     return (
