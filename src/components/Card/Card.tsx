@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Card.module.css';
+import styles from './Card.module.scss';
 import Image from 'next/image';
 
 interface CardComponentProps {
@@ -14,8 +14,8 @@ const Card = ({text, playlistImgSrc, backgroundImgSrc}: CardComponentProps) => {
         <div className={styles.background} style={{"--bg-img-src" : `url(${backgroundImgSrc})` }}>
                 <div className={styles.transparent_block}>
                         <div className={styles.text_container}>
-                            <p className={styles.text_container_title} >Музыка</p>
-                            <p className={styles.text_container_subtitle}>{text}</p>
+                            <p className={styles.text_container__title} >Музыка</p>
+                            <p className={styles.text_container__subtitle}>{text}</p>
                         </div>
                         <Image
                             src={playlistImgSrc}

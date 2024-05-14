@@ -30,22 +30,22 @@
 }
 
 .text_container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    position: absolute;
-    box-sizing: border-box;
-    bottom: 14px;
-    left: 33px;
-    color: white;
-}
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: absolute;
+  box-sizing: border-box;
+  bottom: 14px;
+  left: 33px;
+  color: white;
 
-.text_container_title {
+  &__title {
     margin: 0;
     font-size: 20px;
-}
+  }
 
-.text_container_subtitle {
+  &__subtitle {
     margin: 0;
     font-size: 16px;
+  }
 }

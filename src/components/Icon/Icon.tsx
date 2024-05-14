@@ -3,12 +3,12 @@ import styles from './Icon.module.css';
 import Image from 'next/image'
 
 interface IconComponentProps {
-    alt: string, 
-    text: string, 
-    src: string
+    alt: string; 
+    text: string;
+    src: string;
 }
 
-const icon = ({ alt, text, src }: IconComponentProps) => {
+const Icon = ({ alt, text, src }: IconComponentProps) => {
     return (
         <div className={styles.icon_container}>
             <Image
@@ -24,4 +24,4 @@ const icon = ({ alt, text, src }: IconComponentProps) => {
     )
 };
 
-export default icon;
+export default Icon;
