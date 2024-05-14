@@ -1,4 +1,4 @@
-export const cardsData = [
+export const galleryData = [
     {
         backgroundImg: "/images/cards/cafe.png",
         playlistImgSrc: "/images/playlist_cards/pop_small.png",

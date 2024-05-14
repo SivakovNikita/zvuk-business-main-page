@@ -1,0 +1,39 @@
+.container {  
+    display: grid;
+    margin: 78px 20px 78px 20px;
+    height: 480px;
+    width: 100%;
+    grid-template-areas:
+      "title gallery"
+      "subtitle gallery"
+      "button gallery"
+      "icons gallery";
+}
+  
+.title { grid-area: title; }
+.subtitle { grid-area: subtitle; }
+.button { grid-area: button; }
+.icons { grid-area: icons; }
+.gallery { grid-area: gallery; }
+
+@media (max-width: 990px) {
+    .container {  
+        grid-template-areas:
+          "title"
+          "subtitle"
+          "gallery"
+          "icons"
+          "button";
+    }
+}
+
+@media (max-width: 770px) {
+    .container {  
+        grid-template-areas:
+          "title"
+          "subtitle"
+          "button"
+          "gallery"
+          "icons";
+    }
+}
