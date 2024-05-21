@@ -3,7 +3,7 @@ import Gallery from '../../../../components/Gallery/Gallery';
 import Icons from '../../../../components/Icons/Icons'
 import { galleryData } from "./data/galleryData";
 import { iconsData } from "./data/iconsData";
-import styles from './MainBlock.module.css';
+import styles from './MainBlock.module.scss';
 
 function MainBlock() {
     return (

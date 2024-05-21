@@ -1,4 +1,4 @@
-import styles from './style.module.css';
+import styles from './Button.module.scss';
 
 const Button = () => {
     return <button className={styles.button}>Подключить</button>
