@@ -1,6 +1,6 @@
 import React from 'react';  
 import Icon from "../Icon/Icon";
-import styles from "./Icons.module.css";
+import styles from "./Icons.module.scss";
 
 const Icons = ({ iconsData }) => {
     

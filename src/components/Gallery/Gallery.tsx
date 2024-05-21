@@ -1,5 +1,5 @@
 import Card from "../Card/Card";
-import styles from "./Gallery.module.css";
+import styles from "./Gallery.module.scss";
 
 const Gallery = ( { cardsData } ) => {
 
