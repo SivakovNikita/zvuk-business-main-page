@@ -1,11 +1,12 @@
 import MainBlock from './blocks/MainBlock/MainBlock';
-import FAQ from '../../components/FAQ/FAQ';
+import FAQBlock from './blocks/FAQBlock/FAQBlock';
 
 function MyApp() {
+
     return (
       <>
-      <FAQ />
-       <MainBlock />
+        <MainBlock />
+        <FAQBlock />
       </>
     );
 };

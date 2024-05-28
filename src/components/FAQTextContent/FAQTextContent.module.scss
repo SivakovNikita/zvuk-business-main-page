@@ -1,0 +1,18 @@
+.text_content {
+    font-size: 14px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+    opacity: 0;
+    word-wrap: break-word;
+
+    &.active {
+        max-height: var(--text-height);
+        opacity: 1;
+    }
+}
+
+.text {
+    padding-bottom: 10px;
+    padding-right: 20px;
+}

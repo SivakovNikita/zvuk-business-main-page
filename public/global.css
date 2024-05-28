@@ -47,3 +47,11 @@ h3 {
     color: white;
 }
 
+a {
+    color: #00b399;
+    &:hover {
+        color: #00b399;
+        text-decoration: none;
+    }
+}
+
