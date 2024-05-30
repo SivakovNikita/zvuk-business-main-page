@@ -33,7 +33,7 @@ const FAQ = ( {FAQData}: FAQComponentProps ) => {
                         <span className={ 
                             clsx({[styles.icon]: true, [styles.icon_active]: isActiveItem})  
                         }>
-                            <CrossIcon />
+                            <CrossIcon className={'className'} />
                         </span>
                     </button>
                     <FAQTextContent paragraph={ item.text } isActive={ isActiveItem }/>
