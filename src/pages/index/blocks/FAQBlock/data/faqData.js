@@ -26,13 +26,13 @@ const FAQData = [
               <br/><br/>
               Это могут быть:<br/>
               <ul>
-                  <li>кафе, бары и рестораны;</li>
-                  <li>фитнес-центры, бассейны и спортзалы;</li>
-                  <li>отели и бизнес-центры;</li>
-                  <li>магазины, торговые центры;</li>
-                  <li>медицинские клиники, аптеки;</li>
-                  <li>дилерские центры, автомойки и ремонтные мастерские;</li>
-                  <li>поезда, вокзалы, аэропорты и общественные уборные.</li>
+                  <li style={{ listStyleType: 'disc', marginLeft: 20 }}>кафе, бары и рестораны;</li>
+                  <li style={{ listStyleType: 'disc', marginLeft: 20 }}>фитнес-центры, бассейны и спортзалы;</li>
+                  <li style={{ listStyleType: 'disc', marginLeft: 20 }}>отели и бизнес-центры;</li>
+                  <li style={{ listStyleType: 'disc', marginLeft: 20 }}>магазины, торговые центры;</li>
+                  <li style={{ listStyleType: 'disc', marginLeft: 20 }}>медицинские клиники, аптеки;</li>
+                  <li style={{ listStyleType: 'disc', marginLeft: 20 }}>дилерские центры, автомойки и ремонтные мастерские;</li>
+                  <li style={{ listStyleType: 'disc', marginLeft: 20 }}>поезда, вокзалы, аэропорты и общественные уборные.</li>
               </ul>
           </div>
       ),

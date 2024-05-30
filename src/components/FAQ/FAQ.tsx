@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { ReactNode, useState } from 'react';
 
 interface FAQComponentProps {
-    FAQData: ReactNode
+    FAQData: { title: string, text: ReactNode }[];
 }
 
 const FAQ = ( {FAQData}: FAQComponentProps ) => {
@@ -29,9 +29,9 @@ const FAQ = ( {FAQData}: FAQComponentProps ) => {
                         className={styles.faq_button}
                         onClick={ () => handleToggle(index) }
                     >
-                        <p>{item.title}</p>
+                        <span>{item.title}</span>
                         <span className={ 
-                            clsx({[styles.icon]: true, [styles.active]: isActiveItem})  
+                            clsx({[styles.icon]: true, [styles.icon_active]: isActiveItem})  
                         }>
                             <CrossIcon />
                         </span>

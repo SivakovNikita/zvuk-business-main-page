@@ -4,10 +4,6 @@
     justify-content: center;
     align-items: center;
     margin-top: 10px;
-    
-    ul {
-        padding-left: 0;
-    }
 }
 
 .faq_container {
@@ -27,14 +23,19 @@
 .faq_item {
     width: 100%;
     list-style-type: none;
-    border-bottom: 0.5px solid;
+    border-bottom: 0.3px solid lightgray;
 }
 
 .faq_item:first-child {
-    border-top: 0.5px solid;
+    border-top: 0.3px solid lightgray; 
 }
 
 .faq_button {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.35;
+    background-color: transparent;
+    color: white;
     width: 100%;
     border: none;
     text-align: left;
@@ -62,6 +63,7 @@
 
 .icon {
     background-color: transparent;
+    fill: white;
     min-width: 30px;
     min-height: 30px;
     border-radius: 50%;
@@ -71,9 +73,9 @@
     align-items: center;
     transform: rotate();
     transition: 0.4s ease;
-    
-    &.active {
-        transform: rotate(-45deg);
-        transition: 0.4s ease;
-    }
+}
+
+.icon_active {
+    transform: rotate(-45deg);
+    transition: 0.4s ease;
 }

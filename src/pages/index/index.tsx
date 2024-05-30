@@ -5,7 +5,7 @@ function MyApp() {
 
     return (
       <>
-        <MainBlock />
+        {/* <MainBlock /> */}
         <FAQBlock />
       </>
     );
