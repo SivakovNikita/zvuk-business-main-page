@@ -1,45 +1,46 @@
 import CrossIcon from '../CrossIcon/CrossIcon';
+import FAQTextContent from '../FAQTextContent/FAQTextContent';
 import styles from './FAQ.module.scss';
-import { useState } from 'react';
+import clsx from 'clsx';
+import { ReactNode, useState } from 'react';
 
-const FAQData = [
-    {title: "Что такое Звук Бизнес", text: "Звук Бизнес — аудиосервис для бизнеса. C 2016 года мы создаём музыкальную атмосферу в заведениях и помогаем брендам звучать красиво, увеличивать продажи и нравиться людям."},
-    {title: "Как работает Звук Бизнес", text: "Зарегистрируйтесь по номеру телефона или с помощью СберБизнес ID и укажите вашу сферу бизнеса. После этого вы можете пользоваться Звук Бизнесом бесплатно первые 7 дней."},
-    {title: "Для какого бизнеса предназначен сервис Звук Бизнес", text: `${"Мы работаем с офлайн-бизнесом, которому нужна фоновая музыка."}  \n\n\n ${"Это могут быть:"}`}
-];
+interface FAQComponentProps {
+    FAQData: { title: string, text: ReactNode }[];
+}
 
-
-const FAQ = () => {
+const FAQ = ( {FAQData}: FAQComponentProps ) => {
     const [activeIndex, setActiveIndex] = useState(-1);
-    
+   
     const handleToggle = (index) => {
         setActiveIndex(prevIndex => prevIndex === index ? -1 : index);
     }
 
-    return <ul className={ styles.faq_container }>
-        {FAQData.map((item, index) => {
-            
-            return (
-            <div className={ styles.faq_item } key={item.title}>
-                <button 
-                    className={styles.faq_button}
-                    onClick={ () => handleToggle(index) }
-                >
-                    <p>{item.title}</p>
-                    <div className={ styles.icon }>
-                        <CrossIcon />
-                    </div>
-                </button>
-                <div className={`${styles.text_content} 
-                ${index === activeIndex ? styles.active : ''}`}>
-                        <div style={{ marginBottom: '10px' }}>
-                            <span>{item.text}</span>
-                        </div>
-                </div>
-                
-            </div>)
-        })}
-        </ul>;
+    return ( 
+    <div className={ styles.faq_wrapper }>
+        <span className={ styles.faq_heading }>Дополнительная информация</span>
+        
+        <ul className={ styles.faq_container }>
+            {FAQData.map((item, index) => {
+                const isActiveItem = index === activeIndex;
+
+                return (
+                <li className={ styles.faq_item } key={item.title}>
+                    <button 
+                        className={styles.faq_button}
+                        onClick={ () => handleToggle(index) }
+                    >
+                        <span>{item.title}</span>
+                        <span className={ 
+                            clsx({[styles.icon]: true, [styles.icon_active]: isActiveItem})  
+                        }>
+                            <CrossIcon className={'className'} />
+                        </span>
+                    </button>
+                    <FAQTextContent paragraph={ item.text } isActive={ isActiveItem }/>
+                </li>)
+            })}
+        </ul>
+    </div>)
 }
 
 export default FAQ;

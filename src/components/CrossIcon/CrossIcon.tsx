@@ -1,10 +1,13 @@
+import clsx from 'clsx';
 import styles from './CrossIcon.module.scss' 
 
-const CrossIcon = () => {
-    
-    
+interface CrossIconProps {
+    className: string
+}
+
+const CrossIcon = ({ className }: CrossIconProps ) => {
     return (
-            <svg className={ styles.icon }
+            <svg className={ clsx({[styles.icon]: true, [styles.className]: className}) }
             viewBox="0 0 460.775 460.775">
             <path d="M285.08,230.397L456.218,59.27c6.076-6.077,6.076-15.911,0-21.986L423.511,4.565c-2.913-2.911-6.866-4.55-10.992-4.55
             c-4.127,0-8.08,1.639-10.993,4.55l-171.138,171.14L59.25,4.565c-2.913-2.911-6.866-4.55-10.993-4.55
