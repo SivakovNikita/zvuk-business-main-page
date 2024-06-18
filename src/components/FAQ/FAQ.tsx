@@ -19,7 +19,6 @@ const FAQ = ( {FAQData}: FAQComponentProps ) => {
     return ( 
     <div className={ styles.faq_wrapper }>
         <Heading text={"Дополнительная информация"} tag={"h2"}/>
-        {/* <span className={ styles.faq_heading }>Дополнительная информация</span> */}
         
         <ul className={ styles.faq_container }>
             {FAQData.map((item, index) => {
