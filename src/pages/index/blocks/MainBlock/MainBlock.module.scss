@@ -1,6 +1,7 @@
 .container {  
     display: grid;
-    margin: 78px 20px 78px 20px;
+    color: white;
+    margin: 50px 20px 0 20px;
     height: 480px;
     width: 100%;
     grid-template-areas:
@@ -28,8 +29,29 @@
     }
 }
   
-.title { grid-area: title; }
-.subtitle { grid-area: subtitle; }
+.title { 
+    grid-area: title; 
+    width: 583px;
+    font-family: "SBSansDisplay-Light";
+    line-height: 100%;
+    font-size: 54px;
+    color: white;
+    font-weight: 100;
+    margin-bottom: 20px;
+        @media (max-width: 770px) {
+            font-size: 42px;
+    }
+}
+
+.subtitle { 
+    grid-area: subtitle;
+    font-family: "SBSansDisplay-Light";
+    line-height: 120%;
+    font-size: 16px;
+    color: white;
+    font-weight: 100;
+    margin-bottom: 20px;
+}
 .button { grid-area: button; }
 .icons { grid-area: icons; }
 .gallery { grid-area: gallery; }
