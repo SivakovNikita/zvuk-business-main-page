@@ -1,57 +1,66 @@
-.container {  
-    display: grid;
-    color: white;
-    margin: 50px 20px 0 20px;
-    height: 480px;
-    width: 100%;
+.container {
+  display: grid;
+  color: white;
+  margin: 50px 20px 50px 20px;
+
+  width: 100%;
+  grid-template-areas:
+    'title gallery'
+    'subtitle gallery'
+    'button gallery'
+    'icons gallery';
+
+  @media (max-width: 990px) {
     grid-template-areas:
-      "title gallery"
-      "subtitle gallery"
-      "button gallery"
-      "icons gallery";
-    
-    @media (max-width: 990px) {
-        grid-template-areas:
-            "title"
-            "subtitle"
-            "gallery"
-            "icons"
-            "button";
-    }
-    
-    @media (max-width: 770px) {
-        grid-template-areas:
-            "title"
-            "subtitle"
-            "button"
-            "gallery"
-            "icons";
-    }
-}
-  
-.title { 
-    grid-area: title; 
-    width: 583px;
-    font-family: "SBSansDisplay-Light";
-    line-height: 100%;
-    font-size: 54px;
-    color: white;
-    font-weight: 100;
-    margin-bottom: 20px;
-        @media (max-width: 770px) {
-            font-size: 42px;
-    }
+      'title'
+      'subtitle'
+      'gallery'
+      'icons'
+      'button';
+  }
+
+  @media (max-width: 770px) {
+    grid-template-areas:
+      'title'
+      'subtitle'
+      'button'
+      'gallery'
+      'icons';
+  }
 }
 
-.subtitle { 
-    grid-area: subtitle;
-    font-family: "SBSansDisplay-Light";
-    line-height: 120%;
-    font-size: 16px;
-    color: white;
-    font-weight: 100;
-    margin-bottom: 20px;
+.title {
+  grid-area: title;
+  width: 583px;
+  font-family: 'SBSansDisplay-Light';
+  line-height: 100%;
+  font-size: 54px;
+  color: white;
+  font-weight: 100;
+  margin-bottom: 20px;
+  @media (max-width: 770px) {
+    font-size: 42px;
+  }
 }
-.button { grid-area: button; }
-.icons { grid-area: icons; }
-.gallery { grid-area: gallery; }
+
+.subtitle {
+  grid-area: subtitle;
+  font-family: 'SBSansDisplay-Light';
+  line-height: 120%;
+  font-size: 16px;
+  color: white;
+  font-weight: 100;
+  margin-bottom: 20px;
+}
+
+.button {
+  grid-area: button;
+}
+
+.icons {
+  grid-area: icons;
+}
+
+.gallery {
+  grid-area: gallery;
+}
