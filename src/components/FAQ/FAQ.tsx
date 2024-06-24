@@ -1,4 +1,5 @@
 import CrossIcon from '../CrossIcon/CrossIcon';
+import Heading from '../Heading/Heading';
 import FAQTextContent from '../FAQTextContent/FAQTextContent';
 import styles from './FAQ.module.scss';
 import clsx from 'clsx';
@@ -17,7 +18,7 @@ const FAQ = ( {FAQData}: FAQComponentProps ) => {
 
     return ( 
     <div className={ styles.faq_wrapper }>
-        <span className={ styles.faq_heading }>Дополнительная информация</span>
+        <Heading text={"Дополнительная информация"} tag={"h2"}/>
         
         <ul className={ styles.faq_container }>
             {FAQData.map((item, index) => {

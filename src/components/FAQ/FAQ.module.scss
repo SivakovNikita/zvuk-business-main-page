@@ -30,11 +30,14 @@
     border-top: 0.3px solid lightgray; 
 }
 
+$button-background: transparent;
+$button-hover-background: #00b399;
+
 .faq_button {
     font-size: 16px;
     font-weight: 400;
     line-height: 1.35;
-    background-color: transparent;
+    background-color: $button-background;
     color: white;
     width: 100%;
     border: none;
@@ -46,26 +49,23 @@
     padding: 13px 0 27px 0;
     cursor: pointer;
 
-    p {
-        margin: 0;
-    }
-
     &:focus {
         outline: none;
         box-shadow: none;
     }
 
     &:hover .icon {
-        background-color: #00b399;
+        background-color: $button-hover-background;
         color: white;
     }
 }
 
 .icon {
-    background-color: transparent;
+    background-color: $button-background;
     fill: white;
-    min-width: 30px;
-    min-height: 30px;
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
     border-radius: 50%;
     color: #00b399;
     display: flex;

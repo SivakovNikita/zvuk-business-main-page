@@ -8,10 +8,10 @@ import styles from './MainBlock.module.scss';
 function MainBlock() {
     return (
         <div className={ styles.container }>
-            <h1 className={ styles.title }>Аудиосервис для вашего бизнеса</h1>
-            <h2 className={ styles.subtitle }>без выплат в РАО и ВОИС</h2>
+            <span className={ styles.title }>Аудиосервис для вашего бизнеса</span>
+            <span className={ styles.subtitle }>без выплат в РАО и ВОИС</span>
             <div className={ styles.button }>
-                <Button  />
+                <Button text={"Подключить"}  />
             </div>
             <div className={ styles.icons }>
                 <Icons  iconsData={ iconsData }/>
