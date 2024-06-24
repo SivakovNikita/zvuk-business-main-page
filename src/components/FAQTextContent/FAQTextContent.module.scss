@@ -3,15 +3,14 @@
     line-height: 1.55;
     max-height: 0;
     overflow: hidden;
-    transition: all 0.5s ease;
+    transition: max-height 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
     opacity: 0;
-    visibility: hidden;
+    word-wrap: break-word;
 }
 
 .text_content_active {
     max-height: var(--text-height);
     opacity: 1;
-    visibility: visible;
 }
 
 .text {

@@ -15,19 +15,14 @@ const FAQTextContent = ({ paragraph, isActive }: FAQTextContentProps) => {
     useEffect(() => {
         const resizeObserver = new ResizeObserver((entries) => {
             const [entry] = entries;
-            setHeight(entry.contentRect.height || 0);
+            const entryHeight = entry.contentRect.height;
+            setHeight(entryHeight);
         });
-        
+      
         if (ref.current) {
             resizeObserver.observe(ref.current);
         }
 
-        return () => {
-            if (ref.current) {
-                resizeObserver.unobserve(ref.current);
-            }
-            resizeObserver.disconnect();
-        };
     }, [paragraph]);
     
       

@@ -1,17 +1,12 @@
 import styles from './Button.module.scss';
 import clsx from 'clsx';
 
-interface ButtonInterface {
-    className?: string;
-    text: string;
-};
-
-const Button = ({ className, text = "Подключить" }: ButtonInterface) => {
+const Button = ({ className }) => {
      
     return <button
-        className={clsx(styles.button, className && styles[className])}
+        className={ clsx({[styles.button]: true, [styles.className]: className}) }
         >
-        {text}
+        Подключить
         </button>
 };
 
