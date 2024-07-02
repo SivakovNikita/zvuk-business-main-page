@@ -70,6 +70,7 @@ const toolsData: Item[] = [
 const aboutData: Item[] = [
   { title: 'Блог', href: '/' },
   { title: 'Артистам', href: '/' },
+  { title: 'Партнерам', href: '/' },
 ];
 
 export { businessTypesData, toolsData, aboutData };

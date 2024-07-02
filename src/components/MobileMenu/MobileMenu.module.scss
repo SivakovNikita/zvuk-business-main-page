@@ -1,0 +1,89 @@
+.links_container_mobile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0 0 0;
+  padding-right: 10px;
+}
+
+.buttons_container {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+}
+
+.menu_item:hover {
+  display: block;
+}
+
+.nav_list_item {
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+
+.nav_list_item_mobile {
+  display: block;
+  color: red;
+  &:hover {
+    .menu_link_mobile {
+      display: block;
+    }
+  }
+}
+
+.menu_link_mobile {
+  display: flex;
+  font-size: large;
+  text-decoration: none;
+  align-items: center;
+  color: white;
+}
+
+.nav_list_item_content_mobile {
+  display: none;
+  gap: 5px;
+
+  &_active {
+    display: block;
+  }
+}
+
+.mobile_list {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.arrow {
+  transform: rotate(90deg);
+  transition: transform 0.5s, opacity 0.3s;
+  &_active {
+    transform: rotate(0deg);
+    transition: transform 0.5s, opacity 0.3s;
+  }
+}
+
+.phone_icon {
+  height: 20px;
+  width: 20px;
+  background-color: white;
+  color: black;
+  padding: 5px;
+  border-radius: 50%;
+}
+
+.mobile_menu_wraper {
+  z-index: 10;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}

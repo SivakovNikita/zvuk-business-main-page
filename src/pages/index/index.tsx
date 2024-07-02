@@ -9,6 +9,7 @@ function MyApp() {
   return (
     <>
       <Header />
+      <div id="portal" style={{ margin: '10px' }}></div>
       <MainBlock />
       <TariffsBlock />
       <SalseCardsBlock />

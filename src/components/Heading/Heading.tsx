@@ -2,18 +2,21 @@ import clsx from 'clsx';
 import styles from './Heading.module.scss';
 
 interface HeadingInterface {
-    className?: string;
-    children?: React.ReactNode;
-    text: string;
-    tag: 'h1' | 'h2' | 'h3' | 'p' | 'span';
+  className?: string;
+  children?: React.ReactNode;
+  text: string;
+  tag: 'h1' | 'h2' | 'h3' | 'p' | 'span';
 }
 
-const Heading = ({ className, children, text, tag = "span" }: HeadingInterface) => {
-    const Tag = tag;
+const Heading = ({ className, children, text, tag = 'span' }: HeadingInterface) => {
+  const Tag = tag;
 
-    return (
-        <Tag className={clsx(styles["className"], className)}>{text}{children}</Tag>
-    );
+  return (
+    <Tag className={clsx(styles['className'], className)}>
+      {text}
+      {children}
+    </Tag>
+  );
 };
 
 export default Heading;

@@ -5,14 +5,15 @@ import styles from './TariffCard.module.scss';
 const TariffCard = ({ tariff }) => {
   return (
     <div className={styles.container}>
-      <div className={styles.text_wrapper}>
+      <div className={styles.about_tariff_wrapper}>
         <span className={styles.tariff_name}>{tariff.name}</span>
-
         <div className={styles.price_wrapper}>
           <span className={styles.tariff_price}> {tariff.price} ₽</span>
           <span className={styles.tariff_mounth}> /месяц</span>
         </div>
+      </div>
 
+      <div className={styles.text_wrapper}>
         <ul className={styles.tariff_features_list}>
           {tariff.features.map((feature) => {
             return (
@@ -24,6 +25,7 @@ const TariffCard = ({ tariff }) => {
           })}
         </ul>
       </div>
+
       <div className={styles.btn_wrapper}>
         <Button text={tariff.btnText} />
       </div>
