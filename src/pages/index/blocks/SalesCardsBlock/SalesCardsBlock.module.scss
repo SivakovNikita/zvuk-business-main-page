@@ -1,26 +1,25 @@
 .cards_block_container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 .cards_wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    
-    @media (max-width: 990px) {
-        flex-direction: column;
-    }
-};
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 
-.saels_cards_header {
-    font-size: 52px;
-    text-align: center;
-    font-weight: 300;
-    color: white;
-};
-    
+  @media (max-width: 990px) {
+    flex-direction: column;
+  }
+}
+
+.sales_cards_header {
+  font-size: 52px;
+  text-align: center;
+  font-weight: 300;
+  color: white;
+}

@@ -8,11 +8,11 @@ interface HeadingInterface {
   tag: 'h1' | 'h2' | 'h3' | 'p' | 'span';
 }
 
-const Heading = ({ className, children, text, tag = 'span' }: HeadingInterface) => {
+const Heading = ({ className = 'subtitle', children, text, tag = 'span' }: HeadingInterface) => {
   const Tag = tag;
 
   return (
-    <Tag className={clsx(styles['className'], className)}>
+    <Tag className={clsx(styles[className], className)}>
       {text}
       {children}
     </Tag>
