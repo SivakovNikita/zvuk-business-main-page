@@ -5,7 +5,7 @@ import clsx from 'clsx';
 
 interface CardComponentProps {
   text: string;
-  playlistImgSrc: string;
+  playlistImgSrc?: string;
   backgroundImgSrc: string;
 }
 

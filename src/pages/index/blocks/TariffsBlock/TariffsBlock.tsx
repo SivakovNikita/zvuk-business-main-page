@@ -7,7 +7,7 @@ const TariffsBlock = () => {
   return (
     <div className={styles.container}>
       <div className={styles.heading}>
-        <Heading text="стоимость подписки" tag="h2" className={'subtitle'} />
+        <Heading className="subtitle" text="Cтоимость подписки" tag="h2" />
       </div>
       <div className={styles.tariffs_cards_wrapper}>
         {tariffsData.map((tariff) => {

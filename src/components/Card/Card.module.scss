@@ -1,6 +1,6 @@
 .background {
   width: 33%;
-  height: 420px;
+  height: 450px;
   border-radius: 8px;
   background-image: var(--bg-img-src);
   border: none;
@@ -8,6 +8,7 @@
   background-size: cover;
   background-position: center;
   transition: width 0.5s ease-in-out;
+
   &__active {
     width: 66%;
   }

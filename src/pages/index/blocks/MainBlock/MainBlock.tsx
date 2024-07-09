@@ -7,17 +7,23 @@ import styles from './MainBlock.module.scss';
 
 function MainBlock() {
   return (
-    <div className={styles.container}>
-      <span className={styles.title}>Аудиосервис для вашего бизнеса</span>
-      <span className={styles.subtitle}>без выплат в РАО и ВОИС</span>
-      <div className={styles.button}>
-        <Button text={'Подключить'} />
-      </div>
-      <div className={styles.icons}>
-        <Icons iconsData={iconsData} />
-      </div>
-      <div className={styles.gallery}>
-        <Gallery cardsData={galleryData} />
+    <div className={styles.wrapper}>
+      <div className={styles.container}>
+        <div className={styles.headings}>
+          <span className={styles.title}>
+            Аудиосервис для вашего <span className={styles.title__colored}>бизнеса</span>
+          </span>
+          <span className={styles.subtitle}>без выплат в РАО и ВОИС</span>
+        </div>
+        <div className={styles.button}>
+          <Button text={'Подключить'} />
+        </div>
+        <div className={styles.icons}>
+          <Icons iconsData={iconsData} />
+        </div>
+        <div className={styles.gallery}>
+          <Gallery cardsData={galleryData} />
+        </div>
       </div>
     </div>
   );

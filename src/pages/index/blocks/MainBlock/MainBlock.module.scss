@@ -1,10 +1,18 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
 .container {
   display: grid;
-  justify-content: center;
+  justify-content: stretch;
   color: white;
-  margin: 50px 20px 50px 20px;
+  margin: 50px 20px;
+  width: 80%;
 
-  width: 100%;
   grid-template-areas:
     'title gallery'
     'subtitle gallery'
@@ -21,6 +29,17 @@
   }
 
   @media (max-width: 770px) {
+    gap: 20px;
+    grid-template-areas:
+      'title'
+      'subtitle'
+      'button'
+      'gallery'
+      'icons';
+  }
+
+  @media (max-width: 480px) {
+    margin: 20px 10px;
     grid-template-areas:
       'title'
       'subtitle'
@@ -32,15 +51,23 @@
 
 .title {
   grid-area: title;
-  width: 583px;
+  width: 60%;
   font-family: 'SBSansDisplay-Light';
   line-height: 100%;
   font-size: 54px;
   color: white;
   font-weight: 100;
   margin-bottom: 20px;
+
   @media (max-width: 770px) {
     font-size: 42px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 36px;
+  }
+  &__colored {
+    color: #00b399;
   }
 }
 
@@ -52,6 +79,16 @@
   color: white;
   font-weight: 100;
   margin-bottom: 20px;
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
+}
+
+.headings {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .button {

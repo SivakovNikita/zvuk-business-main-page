@@ -11,7 +11,7 @@ const DesktopMenu = ({ linksData }) => {
           <li className={styles.nav_list_item}>
             <Link className={styles.menu_link} href="/">
               {linkData.title}
-              <IoMdArrowDropdown className={styles.arrow} />
+              {linkData.data ? <IoMdArrowDropdown className={styles.arrow} /> : null}
             </Link>
             {linkData.data ? (
               <div className={styles.nav_list_item_content}>

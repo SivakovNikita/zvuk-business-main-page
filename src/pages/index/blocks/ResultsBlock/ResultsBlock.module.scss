@@ -1,7 +1,9 @@
 .results_container {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   @media (max-width: 990px) {
     display: none;
   }
@@ -25,8 +27,17 @@
   padding: 5px;
 }
 
-.middle {
+.card_container_middle {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  height: 442px;
+  padding: 5px;
   width: 300px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-left: 1px grey solid;
+  border-right: 1px grey solid;
 }
 
 .card_value {
@@ -41,16 +52,16 @@
   font-weight: 300;
   font-size: 200px;
   line-height: 100%;
-  color: #4b7c82;
+  color: #00b399;
 }
 
 .card_percent {
   font-family: 'SBSansDisplay-Light';
   font-style: normal;
   font-weight: 300;
-  font-size: 74px;
+  font-size: 60px;
   line-height: 100%;
-  color: #4b7c82;
+  color: #00b399;
 }
 
 .card_text {
@@ -67,7 +78,7 @@
   font-family: 'SBSansDisplay-Light';
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 13px;
   line-height: 110%;
   color: #ffffff;
   opacity: 0.35;
