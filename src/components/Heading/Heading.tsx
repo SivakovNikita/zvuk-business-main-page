@@ -18,8 +18,7 @@ const Heading = ({ className, children, text, tag = 'span' }: HeadingInterface) 
     const observerCallback = (entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          setIsVisible((prev) => true);
-          console.log(isVisible);
+          setIsVisible(() => true);
         }
       });
     };
