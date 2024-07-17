@@ -1,0 +1,30 @@
+.container {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.player_info {
+  display: flex;
+  flex-direction: row;
+}
+
+.player_navigation {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.player_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 30px;
+  border: none;
+  color: white;
+  background-color: rgb(81, 81, 81, 0.5);
+}
