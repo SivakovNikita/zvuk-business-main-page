@@ -28,7 +28,7 @@ const Player = () => {
     };
 
     const updateTime = () => {
-      const trackCurrentTime = Number(audioElement.currentTime.toFixed(0)); // converted to seconds
+      const trackCurrentTime = Number(audioElement.currentTime.toFixed(0));
       setCurrentTime(trackCurrentTime);
     };
 

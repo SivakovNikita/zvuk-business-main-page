@@ -1,0 +1,66 @@
+.player_container {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  width: 80%;
+}
+
+.player_info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.player_navigation {
+  display: flex;
+  flex: row;
+  gap: 5px;
+}
+
+.title {
+  color: white;
+}
+
+.time {
+  color: white;
+  display: inline-block;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.btn_play_pause {
+  border: none;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 10px;
+  min-height: 10px;
+  color: white;
+  &:hover {
+    color: gray;
+  }
+}
+
+.btn_navigate {
+  border: none;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 10px;
+  min-height: 10px;
+  color: white;
+  &:hover {
+    color: gray;
+  }
+}
+
+.track_range {
+  width: 100%;
+  accent-color: #00b399;
+}
