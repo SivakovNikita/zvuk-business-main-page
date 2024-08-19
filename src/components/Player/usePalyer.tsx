@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import getFormattedTime from './getFormattedTime';
 
 type Track = { title: string; src: string; duration: number };
 
@@ -18,51 +19,68 @@ export const usePlayer = ({
   const [isPlaying, setIsPlaying] = useState(false);
   const [trackDuration, setTrackDuration] = useState(0);
   const [currentTrackDuration, setCurrentTrackDuration] = useState(0);
+  const [currentVolume, setcurrentVolume] = useState(0.5);
+  const [isPrevDisabled, setPrevDisabled] = useState(true);
+  const [isNextDisabled, setNextDisabled] = useState(true);
 
   useEffect(() => {
     const newAudio = new Audio(currentTrack.src);
-
-    if (currentTrackIndex !== 0) {
-      newAudio.play();
-      setIsPlaying(true);
-    }
-
-    const handleLoadedMetadata = () => {
-      const duration = newAudio.duration;
-      setTrackDuration(duration);
-    };
-
-    if (newAudio.readyState >= 1) {
-      handleLoadedMetadata();
-    } else {
-      newAudio.addEventListener('loadedmetadata', handleLoadedMetadata);
-    }
-
     setAudio(newAudio);
-
-    const getFormattedTime = () => {
-      const currentTime = newAudio.currentTime;
-      setCurrentTrackDuration(currentTime); // обновляем время для инпута
-      const minutes = Math.floor(currentTime / 60);
-      const seconds = Math.floor(currentTime % 60);
-      const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
-      return formattedTime;
-    };
-
-    const updateTime = () => {
-      const formattedTime = getFormattedTime();
-      setCurrentTime(formattedTime);
-    };
-
-    newAudio.addEventListener('timeupdate', updateTime);
 
     return () => {
       newAudio.pause();
-      newAudio.removeEventListener('timeupdate', updateTime);
-      newAudio.removeEventListener('loadedmetadata', handleLoadedMetadata);
     };
   }, [currentTrack]);
+
+  useEffect(() => {
+    if (!audio) return;
+
+    const handleLoadedMetadata = () => {
+      setTrackDuration(audio.duration);
+    };
+
+    audio?.addEventListener('loadedmetadata', handleLoadedMetadata);
+
+    return () => {
+      audio?.removeEventListener('loadedmetadata', handleLoadedMetadata);
+    };
+  }, [audio]);
+
+  useEffect(() => {
+    if (!audio) return;
+
+    const handleLoadedMetadata = () => {
+      const duration = audio.duration;
+      setTrackDuration(duration);
+    };
+
+    if (currentTrackIndex !== 0) {
+      audio.play();
+      setIsPlaying(true);
+    }
+
+    return () => {
+      audio.pause();
+
+      audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
+    };
+  }, [audio, currentTrackIndex]);
+
+  useEffect(() => {
+    if (!audio) return;
+
+    const updateTime = () => {
+      const formattedTime = getFormattedTime(audio);
+      setCurrentTime(formattedTime);
+      setCurrentTrackDuration(audio.currentTime);
+    };
+
+    audio.addEventListener('timeupdate', updateTime);
+
+    return () => {
+      audio.removeEventListener('timeupdate', updateTime);
+    };
+  }, [audio]);
 
   const play = useCallback(() => {
     if (audio) {
@@ -77,6 +95,24 @@ export const usePlayer = ({
       setIsPlaying(false);
     }
   }, [audio]);
+
+  const seekTime = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const seekValue = Number(event.target.value);
+      audio.currentTime = seekValue;
+      setCurrentTrackDuration(seekValue);
+    },
+    [audio],
+  );
+
+  const volume = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      let volumeValue = Number(event.target.value);
+      audio.volume = volumeValue;
+      setcurrentVolume(volumeValue);
+    },
+    [audio],
+  );
 
   const next = useCallback(() => {
     let newIndex = currentTrackIndex + 1;
@@ -135,6 +171,14 @@ export const usePlayer = ({
     }
   }, [audio, next, repeat]);
 
+  useEffect(() => {
+    setPrevDisabled(currentTrackIndex === 0 && repeat !== 'all');
+  }, [currentTrackIndex, repeat]);
+
+  useEffect(() => {
+    setNextDisabled(currentTrackIndex === queue.length - 1 && repeat !== 'all');
+  }, [currentTrackIndex, queue.length, repeat]);
+
   return {
     currentTrack,
     currentTime,
@@ -143,8 +187,11 @@ export const usePlayer = ({
     pause,
     next,
     prev,
-    isPrevDisabled: currentTrackIndex === 0 && repeat !== 'all',
-    isNextDisabled: currentTrackIndex === queue.length - 1 && repeat !== 'all',
+    seekTime,
+    volume,
+    isPrevDisabled,
+    isNextDisabled,
+    currentVolume,
     trackDuration,
     currentTrackDuration,
   };

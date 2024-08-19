@@ -4,8 +4,7 @@ import ResultsBlock from './blocks/ResultsBlock/ResultsBlock';
 import FAQBlock from './blocks/FAQBlock/FAQBlock';
 import SalseCardsBlock from './blocks/SalesCardsBlock/SalesCardsBlock';
 import TariffsBlock from './blocks/TariffsBlock/TariffsBlock';
-import Player from '../../components/Player/Player';
-import PlayerBar from '../../components/Player2.0/PlayerBar';
+import PlayerBar from '../../components/Player/PlayerBar';
 
 function MyApp() {
   return (
