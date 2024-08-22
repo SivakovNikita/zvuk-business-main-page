@@ -6,8 +6,8 @@ import getFormattedTime from './getFormattedTime';
 import { TbPlayerTrackNextFilled, TbPlayerTrackPrevFilled } from 'react-icons/tb';
 
 const trackList = [
-  { title: 'Share The Love', src: '/Tracks/Share The Love.mp3', durations: 30 },
-  { title: 'Alright', src: '/Tracks/Alright.mp3', durations: 30 },
+  { title: 'Share The Love', src: '/Tracks/Share The Love.mp3' },
+  { title: 'Alright', src: '/Tracks/Alright.mp3' },
 ];
 
 const PlayerBar = () => {
@@ -17,11 +17,10 @@ const PlayerBar = () => {
     play,
     next,
     prev,
-    seekTime,
-    volume,
+    seek,
+    adjustVolume,
     currentVolume,
-    currentTime,
-    currentTrack,
+    currentTrackTitle,
     isPrevDisabled,
     isNextDisabled,
     trackDuration,
@@ -32,11 +31,13 @@ const PlayerBar = () => {
     repeat: 'all',
   });
 
+  const formattedTime = getFormattedTime(currentTrackDuration);
+
   return (
     <div className={styles.player_container}>
       <div className={styles.player_info}>
-        <span className={styles.title}>{currentTrack.title}</span>
-        <span className={styles.time}>{currentTime ? currentTime : '00:00'}</span>
+        <span className={styles.title}>{currentTrackTitle}</span>
+        <span className={styles.time}>{formattedTime ? formattedTime : '00:00'}</span>
       </div>
 
       <div className={styles.player_navigation}>
@@ -50,10 +51,11 @@ const PlayerBar = () => {
           <TbPlayerTrackNextFilled />
         </button>
       </div>
+
       <div className={styles.inputs_wrapper}>
         <input
           className={styles.track_range}
-          onInput={seekTime}
+          onInput={seek}
           type="range"
           min="0"
           max={trackDuration}
@@ -65,7 +67,7 @@ const PlayerBar = () => {
             {currentVolume !== 0 ? <FaVolumeUp /> : <FaVolumeMute />}
             <input
               className={styles.volume_slider}
-              onInput={volume}
+              onInput={adjustVolume}
               type="range"
               min="0"
               max="1"
