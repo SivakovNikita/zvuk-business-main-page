@@ -4,17 +4,20 @@ import ResultsBlock from './blocks/ResultsBlock/ResultsBlock';
 import FAQBlock from './blocks/FAQBlock/FAQBlock';
 import SalseCardsBlock from './blocks/SalesCardsBlock/SalesCardsBlock';
 import TariffsBlock from './blocks/TariffsBlock/TariffsBlock';
+import PlayerBar from '../../components/Player/PlayerBar';
 
 function MyApp() {
   return (
     <>
       <Header />
       <div id="portal"></div>
-      <MainBlock />
+      <PlayerBar />
+      {/* <MainBlock />
+      <Player />
       <TariffsBlock />
       <SalseCardsBlock />
       <ResultsBlock />
-      <FAQBlock />
+      <FAQBlock /> */}
     </>
   );
 }
