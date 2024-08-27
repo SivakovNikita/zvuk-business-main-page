@@ -8,6 +8,7 @@ import { TbPlayerTrackNextFilled, TbPlayerTrackPrevFilled } from 'react-icons/tb
 const trackList = [
   { title: 'Share The Love', src: '/Tracks/Share The Love.mp3' },
   { title: 'Alright', src: '/Tracks/Alright.mp3' },
+  { title: 'Acid Income', src: '/Tracks/Acid Income.mp3' },
 ];
 
 const PlayerBar = () => {
