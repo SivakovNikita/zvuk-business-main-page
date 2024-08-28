@@ -4,6 +4,7 @@ import { FaPlay, FaPause } from 'react-icons/fa';
 import { FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
 import getFormattedTime from './getFormattedTime';
 import { TbPlayerTrackNextFilled, TbPlayerTrackPrevFilled } from 'react-icons/tb';
+import ProgressBar from '../ProgressBar/ProgressBar';
 
 const trackList = [
   { title: 'Share The Love', src: '/Tracks/Share The Love.mp3' },
@@ -18,8 +19,8 @@ const PlayerBar = () => {
     play,
     next,
     prev,
-    seek,
     adjustVolume,
+    handleSeek,
     currentVolume,
     currentTrackTitle,
     isPrevDisabled,
@@ -53,15 +54,8 @@ const PlayerBar = () => {
         </button>
       </div>
 
-      <div className={styles.inputs_wrapper}>
-        <input
-          className={styles.track_range}
-          onInput={seek}
-          type="range"
-          min="0"
-          max={trackDuration}
-          value={currentTrackDuration}
-        />
+      <div className={styles.controls_wrapper}>
+        <ProgressBar currentTime={currentTrackDuration} duration={trackDuration} onSeek={handleSeek} />
 
         <div className={styles.volume_control}>
           <div className={styles.icon_wrapper}>

@@ -59,21 +59,13 @@
     color: gray;
   }
 }
-
-.inputs_wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  gap: 5px;
-}
-
-.track_range {
+.controls_wrapper {
   width: 100%;
-  accent-color: #00b399;
-  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
-
 .volume_control {
   position: relative;
   display: flex;

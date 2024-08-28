@@ -17,7 +17,7 @@ export const usePlayer = ({
   const [isPlaying, setIsPlaying] = useState(false);
   const [trackDuration, setTrackDuration] = useState(0);
   const [currentTrackDuration, setCurrentTrackDuration] = useState(0);
-  const [currentVolume, setcurrentVolume] = useState(0.5);
+  const [currentVolume, setcurrentVolume] = useState();
   const [isPrevDisabled, setPrevDisabled] = useState(true);
   const [isNextDisabled, setNextDisabled] = useState(true);
 
@@ -56,16 +56,6 @@ export const usePlayer = ({
       audio.pause();
     }
   }, [audio]);
-
-  const seek = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      if (!audio) return;
-
-      const seekValue = Number(event.target.value);
-      audio.currentTime = seekValue;
-    },
-    [audio],
-  );
 
   const loadAndPlay = useCallback(
     async (src: string) => {
@@ -117,6 +107,13 @@ export const usePlayer = ({
     setCurrentTrackIndex(newIndex);
     await loadAndPlay(queue[newIndex].src);
   }, [currentTrackIndex, queue, repeat, loadAndPlay]);
+
+  const handleSeek = (time: number) => {
+    if (audio) {
+      audio.currentTime = time;
+      setCurrentTrackDuration(time);
+    }
+  };
 
   useEffect(() => {
     if (!audio) return;
@@ -182,8 +179,8 @@ export const usePlayer = ({
     play,
     next,
     prev,
-    seek,
     adjustVolume,
+    handleSeek,
     currentVolume,
     currentTrackTitle,
     isPrevDisabled,
