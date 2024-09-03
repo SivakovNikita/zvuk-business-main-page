@@ -8,7 +8,7 @@ const DesktopMenu = ({ linksData }) => {
     <ul className={styles.links_container}>
       {linksData.map((linkData) => {
         return (
-          <li className={styles.nav_list_item}>
+          <li key={linkData.title} className={styles.nav_list_item}>
             <Link className={styles.menu_link} href="/">
               {linkData.title}
               {linkData.data ? <IoMdArrowDropdown className={styles.arrow} /> : null}

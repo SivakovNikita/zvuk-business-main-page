@@ -9,50 +9,47 @@ interface ProgressBarProps {
 
 const ProgressBar = ({ currentTime, duration, onSeek }: ProgressBarProps) => {
   const ref = useRef<HTMLDivElement>(null);
-  const [isDragging, setIsDragging] = useState(false);
+  const dragginTimeRef = useRef<number | null>(null);
+  const [dragginTime, setDragginTime] = useState<number | null>(null);
 
-  const handleMouseDown = (e: React.MouseEvent) => {
-    setIsDragging(true);
-    handleSeek(e);
-  };
-
-  const handleSeek = (e: MouseEvent) => {
+  const handleSeek = (e: MouseEvent | TouchEvent) => {
     if (ref.current) {
-      const posX = e.clientX;
+      const posX = (e instanceof MouseEvent ? e.clientX : e.touches[0]?.clientX) || 0;
       const { left: containerX, width: containerWidth } = ref.current.getBoundingClientRect();
-      const newPosition = (posX - containerX) / containerWidth;
+      const newPosition = Math.max(Math.min(posX - containerX, containerWidth), 0) / containerWidth;
       const newTime = newPosition * duration;
-      onSeek(newTime);
+      setDragginTime(newTime);
+      dragginTimeRef.current = newTime;
     }
   };
 
-  const handleMouseUp = () => {
-    setIsDragging(false);
+  const handleStart = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
+    document.addEventListener('mousemove', handleSeek);
+    document.addEventListener('mouseup', handleMouseUp);
+    document.addEventListener('touchmove', handleSeek);
+    document.addEventListener('touchend', handleMouseUp);
+
+    handleSeek(e.nativeEvent);
   };
 
-  useEffect(() => {
-    if (isDragging) {
-      document.addEventListener('mousemove', handleSeek);
-      document.addEventListener('mouseup', handleMouseUp);
-    } else {
-      document.removeEventListener('mousemove', handleSeek);
-      document.removeEventListener('mouseup', handleMouseUp);
-    }
+  const handleMouseUp = (e: MouseEvent | TouchEvent) => {
+    document.removeEventListener('mousemove', handleSeek);
+    document.removeEventListener('mouseup', handleMouseUp);
+    document.removeEventListener('touchmove', handleSeek);
+    document.removeEventListener('touchend', handleMouseUp);
 
-    return () => {
-      document.removeEventListener('mousemove', handleSeek);
-      document.removeEventListener('mouseup', handleMouseUp);
-    };
-  }, [isDragging]);
+    if (dragginTimeRef.current !== null) {
+      onSeek(dragginTimeRef.current);
+      setDragginTime(null);
+    }
+  };
 
   const progressPercentage = Math.round((currentTime / duration) * 100);
+  const calculatedWidth = dragginTime !== null ? (dragginTime / duration) * 100 : progressPercentage;
 
   return (
-    <div ref={ref} className={styles.progress_bar} onMouseDown={handleMouseDown}>
-      <div
-        className={styles.track_progress}
-        style={{ '--track_progress-width': `${progressPercentage ? progressPercentage : 0}%` } as React.CSSProperties}
-      ></div>
+    <div ref={ref} className={styles.progress_bar} onMouseDown={handleStart} onTouchStart={handleStart}>
+      <div className={styles.track_progress} style={{ width: `${calculatedWidth}%` }}></div>
     </div>
   );
 };

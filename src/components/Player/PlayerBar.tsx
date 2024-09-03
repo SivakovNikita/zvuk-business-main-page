@@ -7,6 +7,7 @@ import { TbPlayerTrackNextFilled, TbPlayerTrackPrevFilled } from 'react-icons/tb
 import ProgressBar from '../ProgressBar/ProgressBar';
 
 const trackList = [
+  { title: 'Flight FM', src: '/Tracks/flight fm.mp3' },
   { title: 'Share The Love', src: '/Tracks/Share The Love.mp3' },
   { title: 'Alright', src: '/Tracks/Alright.mp3' },
   { title: 'Acid Income', src: '/Tracks/Acid Income.mp3' },
@@ -62,7 +63,7 @@ const PlayerBar = () => {
             {currentVolume !== 0 ? <FaVolumeUp /> : <FaVolumeMute />}
             <input
               className={styles.volume_slider}
-              onInput={adjustVolume}
+              onChange={adjustVolume}
               type="range"
               min="0"
               max="1"

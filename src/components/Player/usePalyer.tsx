@@ -17,18 +17,35 @@ export const usePlayer = ({
   const [isPlaying, setIsPlaying] = useState(false);
   const [trackDuration, setTrackDuration] = useState(0);
   const [currentTrackDuration, setCurrentTrackDuration] = useState(0);
-  const [currentVolume, setcurrentVolume] = useState();
+  const [currentVolume, setcurrentVolume] = useState(0);
   const [isPrevDisabled, setPrevDisabled] = useState(true);
   const [isNextDisabled, setNextDisabled] = useState(true);
 
   useEffect(() => {
     const newAudio = new Audio();
+    newAudio.volume = 0.5;
+    setcurrentVolume(newAudio.volume);
     setAudio(newAudio);
 
     return () => {
       newAudio.pause();
     };
   }, []);
+
+  useEffect(() => {
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: currentTrackTitle,
+      artist: 'artist',
+      album: 'album',
+      artwork: [
+        {
+          src: '',
+          sizes: '',
+          type: '',
+        },
+      ],
+    });
+  }, [audio, currentTrackTitle]);
 
   const adjustVolume = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,14 +79,24 @@ export const usePlayer = ({
       if (audio && src) {
         try {
           audio.src = src;
-          audio.currentTime = 0;
-          // колхоз без которого не работает автовоспроизведение следующего трека
-          setTimeout(() => {
-            audio.load();
-            audio.play();
-          }, 10);
+
+          const awaiter = new Promise<void>((resolve) => {
+            const callback = () => {
+              audio.removeEventListener('loadstart', callback);
+              audio.removeEventListener('abort', callback);
+              resolve();
+            };
+            audio.addEventListener('loadstart', callback);
+            audio.addEventListener('abort', callback);
+          });
+
+          await audio.load();
+          await awaiter;
+          await audio.play();
         } catch (error) {
-          console.error('Ошибка:', error);
+          if (error instanceof MediaError && error.code !== MediaError.MEDIA_ERR_ABORTED) {
+            console.error('Ошибка:', error);
+          }
         }
       }
     },
