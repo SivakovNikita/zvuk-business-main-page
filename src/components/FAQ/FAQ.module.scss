@@ -1,81 +1,82 @@
 .faq_wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  padding: 10px;
 }
 
 .faq_container {
-    margin: 10px;
-    color: white;
-    max-width: 90%;
-    min-width: 320px;
+  margin: 10px;
+  color: white;
+  max-width: 90%;
+  min-width: 320px;
 }
 
 .faq_heading {
-    font-size: 52px;
-    text-align: center;
-    font-weight: 300;
-    color: white;
+  font-size: 52px;
+  text-align: center;
+  font-weight: 300;
+  color: white;
 }
 
 .faq_item {
-    width: 100%;
-    list-style-type: none;
-    border-bottom: 0.3px solid lightgray;
+  width: 100%;
+  list-style-type: none;
+  border-bottom: 0.3px solid lightgray;
 }
 
 .faq_item:first-child {
-    border-top: 0.3px solid lightgray; 
+  border-top: 0.3px solid lightgray;
 }
 
 $button-background: transparent;
 $button-hover-background: #00b399;
 
 .faq_button {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1.35;
-    background-color: $button-background;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.35;
+  background-color: $button-background;
+  color: white;
+  width: 100%;
+  border: none;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 13px 0 27px 0;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  &:hover .icon {
+    background-color: $button-hover-background;
     color: white;
-    width: 100%;
-    border: none;
-    text-align: left;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0;
-    padding: 13px 0 27px 0;
-    cursor: pointer;
-
-    &:focus {
-        outline: none;
-        box-shadow: none;
-    }
-
-    &:hover .icon {
-        background-color: $button-hover-background;
-        color: white;
-    }
+  }
 }
 
 .icon {
-    background-color: $button-background;
-    fill: white;
-    width: 30px;
-    height: 30px;
-    flex-shrink: 0;
-    border-radius: 50%;
-    color: #00b399;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform: rotate();
-    transition: 0.4s ease;
+  background-color: $button-background;
+  fill: white;
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  color: #00b399;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate();
+  transition: 0.4s ease;
 }
 
 .icon_active {
-    transform: rotate(-45deg);
-    transition: 0.4s ease;
+  transform: rotate(-45deg);
+  transition: 0.4s ease;
 }

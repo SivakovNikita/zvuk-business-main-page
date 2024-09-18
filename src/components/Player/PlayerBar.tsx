@@ -5,13 +5,10 @@ import { FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
 import getFormattedTime from './getFormattedTime';
 import { TbPlayerTrackNextFilled, TbPlayerTrackPrevFilled } from 'react-icons/tb';
 import ProgressBar from '../ProgressBar/ProgressBar';
-
-const trackList = [
-  { title: 'Flight FM', src: '/Tracks/flight fm.mp3' },
-  { title: 'Share The Love', src: '/Tracks/Share The Love.mp3' },
-  { title: 'Alright', src: '/Tracks/Alright.mp3' },
-  { title: 'Acid Income', src: '/Tracks/Acid Income.mp3' },
-];
+import useMediaSession from './useMediaSession';
+import { trackList } from './trackList/trackList';
+import clsx from 'clsx';
+import Timer from '../Timer/Timer';
 
 const PlayerBar = () => {
   const {
@@ -23,7 +20,7 @@ const PlayerBar = () => {
     adjustVolume,
     handleSeek,
     currentVolume,
-    currentTrackTitle,
+    currentTrackIndex,
     isPrevDisabled,
     isNextDisabled,
     trackDuration,
@@ -34,15 +31,36 @@ const PlayerBar = () => {
     repeat: 'all',
   });
 
+  const track = {
+    title: trackList[currentTrackIndex].title,
+    artist: trackList[currentTrackIndex].artist,
+    artwork: trackList[currentTrackIndex].img,
+    next: isNextDisabled,
+  };
+
+  useMediaSession({
+    track,
+    onPlay: play,
+    onPause: pause,
+    onPreviousTrack: prev,
+    onNextTrack: next,
+  });
+
   const formattedTime = getFormattedTime(currentTrackDuration);
 
   return (
     <div className={styles.player_container}>
       <div className={styles.player_info}>
-        <span className={styles.title}>{currentTrackTitle}</span>
-        <span className={styles.time}>{formattedTime ? formattedTime : '00:00'}</span>
+        <div className={styles.image_container}>
+          <img
+            className={clsx({ [styles.image]: true, [styles.image__active]: isPlaying })}
+            src={track.artwork[0].src}
+          ></img>
+        </div>
+        <span className={styles.title}>{track.title}</span>
+        <span className={styles.title}>{track.artist}</span>
+        <Timer formattedTime={formattedTime} />
       </div>
-
       <div className={styles.player_navigation}>
         <button className={styles.btn_navigate} disabled={isPrevDisabled} onClick={prev}>
           <TbPlayerTrackPrevFilled />

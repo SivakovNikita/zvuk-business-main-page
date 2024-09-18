@@ -1,19 +1,19 @@
 import { useState, useEffect, useCallback } from 'react';
 
-type Track = { title: string; src: string };
-
-export const usePlayer = ({
+export const usePlayer = <T extends { src: string }>({
   queue,
   repeat,
   startIndex,
 }: {
-  queue: Track[];
+  queue: T[];
   repeat: 'all' | 'one' | 'none';
   startIndex: number;
 }) => {
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
   const [currentTrackIndex, setCurrentTrackIndex] = useState(startIndex);
-  const [currentTrackTitle, setCurrentTrackTitle] = useState(queue[currentTrackIndex].title);
+  // const [currentTrackTitle, setCurrentTrackTitle] = useState(queue[currentTrackIndex].title);
+  // const [currentTrackArtist, setCurrentTrackArtist] = useState(queue[currentTrackIndex].artist);
+  // const [currentTrackImageData, setcurrentTrackImageData] = useState(queue[currentTrackIndex].img);
   const [isPlaying, setIsPlaying] = useState(false);
   const [trackDuration, setTrackDuration] = useState(0);
   const [currentTrackDuration, setCurrentTrackDuration] = useState(0);
@@ -31,21 +31,6 @@ export const usePlayer = ({
       newAudio.pause();
     };
   }, []);
-
-  useEffect(() => {
-    navigator.mediaSession.metadata = new MediaMetadata({
-      title: currentTrackTitle,
-      artist: 'artist',
-      album: 'album',
-      artwork: [
-        {
-          src: '',
-          sizes: '',
-          type: '',
-        },
-      ],
-    });
-  }, [audio, currentTrackTitle]);
 
   const adjustVolume = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -167,20 +152,11 @@ export const usePlayer = ({
       setIsPlaying(!audio.paused);
     };
 
-    const handleTrackTitle = () => {
-      let trackTitle = queue[currentTrackIndex].title;
-
-      if (trackTitle !== undefined) {
-        setCurrentTrackTitle(trackTitle);
-      }
-    };
-
     audio.addEventListener('play', handlePlayStop);
     audio.addEventListener('pause', handlePlayStop);
     audio.addEventListener('loadedmetadata', handleLoadedMetadata);
     audio.addEventListener('timeupdate', updateTime);
     audio.addEventListener('ended', handleEnd);
-    audio.addEventListener('play', handleTrackTitle);
 
     return () => {
       audio.pause();
@@ -209,7 +185,7 @@ export const usePlayer = ({
     adjustVolume,
     handleSeek,
     currentVolume,
-    currentTrackTitle,
+    currentTrackIndex,
     isPrevDisabled,
     isNextDisabled,
     trackDuration,
