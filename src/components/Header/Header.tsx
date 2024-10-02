@@ -58,7 +58,7 @@ const Header = () => {
       </div>
 
       {isMobile ? (
-        <>{createPortal(isMenuOpen ? <MobileMenu /> : null, document.getElementById('portal')!)}</>
+        <>{createPortal(isMenuOpen ? <MobileMenu isOpen={isMenuOpen} /> : null, document.getElementById('portal')!)}</>
       ) : (
         <nav className={styles.nav}>
           <DesktopMenu linksData={headerLinksData} />

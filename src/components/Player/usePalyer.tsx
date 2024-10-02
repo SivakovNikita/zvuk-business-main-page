@@ -11,15 +11,13 @@ export const usePlayer = <T extends { src: string }>({
 }) => {
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
   const [currentTrackIndex, setCurrentTrackIndex] = useState(startIndex);
-  // const [currentTrackTitle, setCurrentTrackTitle] = useState(queue[currentTrackIndex].title);
-  // const [currentTrackArtist, setCurrentTrackArtist] = useState(queue[currentTrackIndex].artist);
-  // const [currentTrackImageData, setcurrentTrackImageData] = useState(queue[currentTrackIndex].img);
   const [isPlaying, setIsPlaying] = useState(false);
   const [trackDuration, setTrackDuration] = useState(0);
   const [currentTrackDuration, setCurrentTrackDuration] = useState(0);
   const [currentVolume, setcurrentVolume] = useState(0);
   const [isPrevDisabled, setPrevDisabled] = useState(true);
   const [isNextDisabled, setNextDisabled] = useState(true);
+  console.log('usePlayer');
 
   useEffect(() => {
     const newAudio = new Audio();
@@ -174,6 +172,7 @@ export const usePlayer = <T extends { src: string }>({
 
   useEffect(() => {
     setNextDisabled(currentTrackIndex === queue.length - 1 && repeat !== 'all');
+    console.log(isNextDisabled);
   }, [currentTrackIndex, queue.length, repeat]);
 
   return {

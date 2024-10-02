@@ -9,6 +9,7 @@ import useMediaSession from './useMediaSession';
 import { trackList } from './trackList/trackList';
 import clsx from 'clsx';
 import Timer from '../Timer/Timer';
+import { useMemo } from 'react';
 
 const PlayerBar = () => {
   const {
@@ -28,15 +29,19 @@ const PlayerBar = () => {
   } = usePlayer({
     queue: trackList,
     startIndex: 0,
-    repeat: 'all',
+    repeat: 'none',
   });
 
-  const track = {
-    title: trackList[currentTrackIndex].title,
-    artist: trackList[currentTrackIndex].artist,
-    artwork: trackList[currentTrackIndex].img,
-    next: isNextDisabled,
-  };
+  const track = useMemo(
+    () => ({
+      title: trackList[currentTrackIndex].title,
+      artist: trackList[currentTrackIndex].artist,
+      artwork: trackList[currentTrackIndex].img,
+      next: isNextDisabled,
+      prev: isPrevDisabled,
+    }),
+    [currentTrackIndex],
+  );
 
   useMediaSession({
     track,

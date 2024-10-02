@@ -1,4 +1,4 @@
-const getFormattedTime = (currentTrackDuration) => {
+const getFormattedTime = (currentTrackDuration: number) => {
   const minutes = Math.floor(currentTrackDuration / 60);
   const seconds = Math.floor(currentTrackDuration % 60);
   const min = `${minutes.toString().padStart(2, '0')}`;

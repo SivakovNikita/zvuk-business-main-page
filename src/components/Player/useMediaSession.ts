@@ -4,8 +4,9 @@ export interface MediaSessionProps {
   track: {
     title?: string;
     artist?: string;
-    album?: string;
-    artwork: MediaImage[];
+    artwork?: MediaImage[];
+    next?: boolean;
+    prev?: boolean;
   };
 
   onPlay?: (...args: any[]) => any;
@@ -16,6 +17,7 @@ export interface MediaSessionProps {
 
 const useMediaSession = (props: MediaSessionProps) => {
   const { track, onPlay, onPause, onPreviousTrack, onNextTrack } = props;
+  console.log('useMediaSession');
 
   useEffect(() => {
     if ('mediaSession' in navigator) {
@@ -24,10 +26,9 @@ const useMediaSession = (props: MediaSessionProps) => {
       mediaSession.metadata = new MediaMetadata({
         title: track.title || '',
         artist: track.artist || '',
-        album: track.album || '',
         artwork: track.artwork || [],
       });
-
+      console.log(track.next);
       const events: { action: MediaSessionAction; handler: MediaSessionActionHandler | null }[] = [
         {
           action: 'play',
@@ -39,11 +40,11 @@ const useMediaSession = (props: MediaSessionProps) => {
         },
         {
           action: 'previoustrack',
-          handler: onPreviousTrack || null,
+          handler: track.prev && onPreviousTrack ? onPreviousTrack : null,
         },
         {
           action: 'nexttrack',
-          handler: onNextTrack || null,
+          handler: track.next && onNextTrack ? onNextTrack : null,
         },
       ];
 
