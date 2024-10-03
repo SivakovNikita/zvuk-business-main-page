@@ -4,12 +4,12 @@ import { FaPlay, FaPause } from 'react-icons/fa';
 import { FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
 import getFormattedTime from './getFormattedTime';
 import { TbPlayerTrackNextFilled, TbPlayerTrackPrevFilled } from 'react-icons/tb';
-
-const trackList = [
-  { title: 'Share The Love', src: '/Tracks/Share The Love.mp3' },
-  { title: 'Alright', src: '/Tracks/Alright.mp3' },
-  { title: 'Acid Income', src: '/Tracks/Acid Income.mp3' },
-];
+import ProgressBar from '../ProgressBar/ProgressBar';
+import useMediaSession from './useMediaSession';
+import { trackList } from './trackList/trackList';
+import clsx from 'clsx';
+import Timer from '../Timer/Timer';
+import { useMemo } from 'react';
 
 const PlayerBar = () => {
   const {
@@ -18,10 +18,10 @@ const PlayerBar = () => {
     play,
     next,
     prev,
-    seek,
     adjustVolume,
+    handleSeek,
     currentVolume,
-    currentTrackTitle,
+    currentTrackIndex,
     isPrevDisabled,
     isNextDisabled,
     trackDuration,
@@ -29,7 +29,26 @@ const PlayerBar = () => {
   } = usePlayer({
     queue: trackList,
     startIndex: 0,
-    repeat: 'all',
+    repeat: 'none',
+  });
+
+  const track = useMemo(
+    () => ({
+      title: trackList[currentTrackIndex].title,
+      artist: trackList[currentTrackIndex].artist,
+      artwork: trackList[currentTrackIndex].img,
+      next: isNextDisabled,
+      prev: isPrevDisabled,
+    }),
+    [currentTrackIndex],
+  );
+
+  useMediaSession({
+    track,
+    onPlay: play,
+    onPause: pause,
+    onPreviousTrack: prev,
+    onNextTrack: next,
   });
 
   const formattedTime = getFormattedTime(currentTrackDuration);
@@ -37,10 +56,16 @@ const PlayerBar = () => {
   return (
     <div className={styles.player_container}>
       <div className={styles.player_info}>
-        <span className={styles.title}>{currentTrackTitle}</span>
-        <span className={styles.time}>{formattedTime ? formattedTime : '00:00'}</span>
+        <div className={styles.image_container}>
+          <img
+            className={clsx({ [styles.image]: true, [styles.image__active]: isPlaying })}
+            src={track.artwork[0].src}
+          ></img>
+        </div>
+        <span className={styles.title}>{track.title}</span>
+        <span className={styles.title}>{track.artist}</span>
+        <Timer formattedTime={formattedTime} />
       </div>
-
       <div className={styles.player_navigation}>
         <button className={styles.btn_navigate} disabled={isPrevDisabled} onClick={prev}>
           <TbPlayerTrackPrevFilled />
@@ -53,22 +78,15 @@ const PlayerBar = () => {
         </button>
       </div>
 
-      <div className={styles.inputs_wrapper}>
-        <input
-          className={styles.track_range}
-          onInput={seek}
-          type="range"
-          min="0"
-          max={trackDuration}
-          value={currentTrackDuration}
-        />
+      <div className={styles.controls_wrapper}>
+        <ProgressBar currentTime={currentTrackDuration} duration={trackDuration} onSeek={handleSeek} />
 
         <div className={styles.volume_control}>
           <div className={styles.icon_wrapper}>
             {currentVolume !== 0 ? <FaVolumeUp /> : <FaVolumeMute />}
             <input
               className={styles.volume_slider}
-              onInput={adjustVolume}
+              onChange={adjustVolume}
               type="range"
               min="0"
               max="1"

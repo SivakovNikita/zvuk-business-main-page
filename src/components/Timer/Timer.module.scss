@@ -1,0 +1,14 @@
+.timer_wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 1px;
+  max-width: 100px;
+  //   font-family: monospace;
+}
+
+.timer_wrapper_span {
+  display: inline-block;
+  width: 20px;
+  text-align: center;
+}

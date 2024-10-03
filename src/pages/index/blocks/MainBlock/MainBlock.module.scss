@@ -1,16 +1,19 @@
 .wrapper {
+  overflow: hidden;
   display: flex;
   justify-content: center;
+  justify-items: start;
   align-items: center;
   height: 100vh;
-  width: 100%;
+  padding-top: 50px;
 }
 
 .container {
   display: grid;
-  justify-content: stretch;
+  justify-items: start;
+  // justify-content: stretch;
   color: white;
-  margin: 50px 20px;
+  margin: 0 20px;
   width: 80%;
 
   grid-template-areas:
@@ -66,7 +69,7 @@
   @media (max-width: 480px) {
     font-size: 36px;
   }
-  &__colored {
+  & __colored {
     color: #00b399;
   }
 }
@@ -101,4 +104,6 @@
 
 .gallery {
   grid-area: gallery;
+  min-width: 350px;
+  overflow: visible;
 }

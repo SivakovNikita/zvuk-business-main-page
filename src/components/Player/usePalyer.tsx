@@ -1,28 +1,28 @@
 import { useState, useEffect, useCallback } from 'react';
 
-type Track = { title: string; src: string };
-
-export const usePlayer = ({
+export const usePlayer = <T extends { src: string }>({
   queue,
   repeat,
   startIndex,
 }: {
-  queue: Track[];
+  queue: T[];
   repeat: 'all' | 'one' | 'none';
   startIndex: number;
 }) => {
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
   const [currentTrackIndex, setCurrentTrackIndex] = useState(startIndex);
-  const [currentTrackTitle, setCurrentTrackTitle] = useState(queue[currentTrackIndex].title);
   const [isPlaying, setIsPlaying] = useState(false);
   const [trackDuration, setTrackDuration] = useState(0);
   const [currentTrackDuration, setCurrentTrackDuration] = useState(0);
-  const [currentVolume, setcurrentVolume] = useState(0.5);
+  const [currentVolume, setcurrentVolume] = useState(0);
   const [isPrevDisabled, setPrevDisabled] = useState(true);
   const [isNextDisabled, setNextDisabled] = useState(true);
+  console.log('usePlayer');
 
   useEffect(() => {
     const newAudio = new Audio();
+    newAudio.volume = 0.5;
+    setcurrentVolume(newAudio.volume);
     setAudio(newAudio);
 
     return () => {
@@ -57,29 +57,29 @@ export const usePlayer = ({
     }
   }, [audio]);
 
-  const seek = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      if (!audio) return;
-
-      const seekValue = Number(event.target.value);
-      audio.currentTime = seekValue;
-    },
-    [audio],
-  );
-
   const loadAndPlay = useCallback(
     async (src: string) => {
       if (audio && src) {
         try {
           audio.src = src;
-          audio.currentTime = 0;
-          // колхоз без которого не работает автовоспроизведение следующего трека
-          setTimeout(() => {
-            audio.load();
-            audio.play();
-          }, 10);
+
+          const awaiter = new Promise<void>((resolve) => {
+            const callback = () => {
+              audio.removeEventListener('loadstart', callback);
+              audio.removeEventListener('abort', callback);
+              resolve();
+            };
+            audio.addEventListener('loadstart', callback);
+            audio.addEventListener('abort', callback);
+          });
+
+          await audio.load();
+          await awaiter;
+          await audio.play();
         } catch (error) {
-          console.error('Ошибка:', error);
+          if (error instanceof MediaError && error.code !== MediaError.MEDIA_ERR_ABORTED) {
+            console.error('Ошибка:', error);
+          }
         }
       }
     },
@@ -118,6 +118,13 @@ export const usePlayer = ({
     await loadAndPlay(queue[newIndex].src);
   }, [currentTrackIndex, queue, repeat, loadAndPlay]);
 
+  const handleSeek = (time: number) => {
+    if (audio) {
+      audio.currentTime = time;
+      setCurrentTrackDuration(time);
+    }
+  };
+
   useEffect(() => {
     if (!audio) return;
 
@@ -143,20 +150,11 @@ export const usePlayer = ({
       setIsPlaying(!audio.paused);
     };
 
-    const handleTrackTitle = () => {
-      let trackTitle = queue[currentTrackIndex].title;
-
-      if (trackTitle !== undefined) {
-        setCurrentTrackTitle(trackTitle);
-      }
-    };
-
     audio.addEventListener('play', handlePlayStop);
     audio.addEventListener('pause', handlePlayStop);
     audio.addEventListener('loadedmetadata', handleLoadedMetadata);
     audio.addEventListener('timeupdate', updateTime);
     audio.addEventListener('ended', handleEnd);
-    audio.addEventListener('play', handleTrackTitle);
 
     return () => {
       audio.pause();
@@ -174,6 +172,7 @@ export const usePlayer = ({
 
   useEffect(() => {
     setNextDisabled(currentTrackIndex === queue.length - 1 && repeat !== 'all');
+    console.log(isNextDisabled);
   }, [currentTrackIndex, queue.length, repeat]);
 
   return {
@@ -182,10 +181,10 @@ export const usePlayer = ({
     play,
     next,
     prev,
-    seek,
     adjustVolume,
+    handleSeek,
     currentVolume,
-    currentTrackTitle,
+    currentTrackIndex,
     isPrevDisabled,
     isNextDisabled,
     trackDuration,
