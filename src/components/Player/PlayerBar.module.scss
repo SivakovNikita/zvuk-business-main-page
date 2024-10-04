@@ -5,7 +5,9 @@
   align-items: center;
   flex-direction: column;
   gap: 10px;
-  width: 80%;
+  width: 600px;
+  max-width: 600px;
+  min-width: 220px;
 }
 
 .player_info {

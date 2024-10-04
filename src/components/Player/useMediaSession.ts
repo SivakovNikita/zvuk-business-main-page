@@ -17,7 +17,6 @@ export interface MediaSessionProps {
 
 const useMediaSession = (props: MediaSessionProps) => {
   const { track, onPlay, onPause, onPreviousTrack, onNextTrack } = props;
-  console.log('useMediaSession');
 
   useEffect(() => {
     if ('mediaSession' in navigator) {
@@ -28,7 +27,7 @@ const useMediaSession = (props: MediaSessionProps) => {
         artist: track.artist || '',
         artwork: track.artwork || [],
       });
-      console.log(track.next);
+
       const events: { action: MediaSessionAction; handler: MediaSessionActionHandler | null }[] = [
         {
           action: 'play',

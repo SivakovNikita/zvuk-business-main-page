@@ -17,7 +17,6 @@ export const usePlayer = <T extends { src: string }>({
   const [currentVolume, setcurrentVolume] = useState(0);
   const [isPrevDisabled, setPrevDisabled] = useState(true);
   const [isNextDisabled, setNextDisabled] = useState(true);
-  console.log('usePlayer');
 
   useEffect(() => {
     const newAudio = new Audio();
@@ -49,11 +48,12 @@ export const usePlayer = <T extends { src: string }>({
       }
       audio.play();
     }
-  }, [audio]);
+  }, [audio, currentTrackIndex]);
 
   const pause = useCallback(() => {
     if (audio) {
       audio.pause();
+      setIsPlaying(!audio.paused);
     }
   }, [audio]);
 
@@ -86,20 +86,28 @@ export const usePlayer = <T extends { src: string }>({
     [audio],
   );
 
-  const next = useCallback(async () => {
-    let newIndex = currentTrackIndex + 1;
-
-    if (newIndex >= queue.length) {
-      if (repeat === 'all') {
-        newIndex = 0;
+  const next = useCallback(
+    async (index?: number) => {
+      let newIndex;
+      if (index != null) {
+        newIndex = index;
       } else {
-        return audio?.pause();
+        newIndex = currentTrackIndex + 1;
       }
-    }
 
-    setCurrentTrackIndex(newIndex);
-    await loadAndPlay(queue[newIndex].src);
-  }, [currentTrackIndex, queue, repeat, loadAndPlay, audio]);
+      if (newIndex >= queue.length) {
+        if (repeat === 'all') {
+          newIndex = 0;
+        } else {
+          return audio?.pause();
+        }
+      }
+
+      setCurrentTrackIndex(newIndex);
+      await loadAndPlay(queue[newIndex].src);
+    },
+    [currentTrackIndex, queue, repeat, loadAndPlay, audio],
+  );
 
   const prev = useCallback(async () => {
     let newIndex = currentTrackIndex - 1;
@@ -168,11 +176,10 @@ export const usePlayer = <T extends { src: string }>({
 
   useEffect(() => {
     setPrevDisabled(currentTrackIndex === 0 && repeat !== 'all');
-  }, [currentTrackIndex, repeat]);
+  }, [currentTrackIndex, audio, repeat]);
 
   useEffect(() => {
     setNextDisabled(currentTrackIndex === queue.length - 1 && repeat !== 'all');
-    console.log(isNextDisabled);
   }, [currentTrackIndex, queue.length, repeat]);
 
   return {
@@ -183,6 +190,7 @@ export const usePlayer = <T extends { src: string }>({
     prev,
     adjustVolume,
     handleSeek,
+    setCurrentTrackIndex,
     currentVolume,
     currentTrackIndex,
     isPrevDisabled,
