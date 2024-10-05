@@ -5,11 +5,10 @@ import clsx from 'clsx';
 
 interface CardComponentProps {
   text: string;
-  playlistImgSrc?: string;
   backgroundImgSrc: string;
 }
 
-const Card = ({ text, playlistImgSrc, backgroundImgSrc }: CardComponentProps) => {
+const Card = ({ text, backgroundImgSrc }: CardComponentProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {
