@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import styles from './Card.module.scss';
-import Image from 'next/image';
 import clsx from 'clsx';
 
 interface CardComponentProps {
   text: string;
-  backgroundImgSrc: string;
+  playlistImgSrc?: string;
+  backgroundImgSrc?: string;
 }
 
 const Card = ({ text, backgroundImgSrc }: CardComponentProps) => {
