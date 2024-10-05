@@ -4,6 +4,7 @@ import styles from './TariffsBlock.module.scss';
 import tariffsData from './data/tariffsData';
 
 const TariffsBlock = () => {
+  let index = 0;
   return (
     <div className={styles.container}>
       <div className={styles.heading}>
@@ -11,7 +12,8 @@ const TariffsBlock = () => {
       </div>
       <div className={styles.tariffs_cards_wrapper}>
         {tariffsData.map((tariff) => {
-          return <TariffCard tariff={tariff} />;
+          index++;
+          return <TariffCard key={index} tariff={tariff} />;
         })}
       </div>
     </div>
