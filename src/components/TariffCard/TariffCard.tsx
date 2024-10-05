@@ -3,6 +3,7 @@ import Button from '../Button/Button';
 import styles from './TariffCard.module.scss';
 
 const TariffCard = ({ tariff }) => {
+  let index = 0;
   return (
     <div className={styles.container}>
       <div className={styles.about_tariff_wrapper}>
@@ -16,8 +17,9 @@ const TariffCard = ({ tariff }) => {
       <div className={styles.text_wrapper}>
         <ul className={styles.tariff_features_list}>
           {tariff.features.map((feature) => {
+            index++;
             return (
-              <li className={styles.feature_item}>
+              <li key={index} className={styles.feature_item}>
                 <FaCheck className={styles.feature_check} />
                 {feature}
               </li>

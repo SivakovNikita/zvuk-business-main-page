@@ -53,5 +53,5 @@ const ProgressBar = React.memo(({ currentTime, duration, onSeek }: ProgressBarPr
     </div>
   );
 });
-
+ProgressBar.displayName = 'ProgressBar';
 export default ProgressBar;
