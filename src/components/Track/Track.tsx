@@ -45,7 +45,7 @@ const Track = ({ track, index }) => {
           </button>
         ) : null}
 
-        <img className={styles.track_image} src={track.img[0].src} />
+        <img className={styles.track_image} src={track.img[0].src} alt={'Музыка для бизнеса :' + track.artist} />
         {playing ? (
           <button className={styles.play_pause} onClick={state ? () => pause() : () => play()}>
             {state ? !isHovered ? <Equalizer /> : <FaPause /> : <FaPlay />}
