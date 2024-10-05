@@ -1,0 +1,93 @@
+.track_wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: white;
+  width: 100%;
+  max-width: 600px;
+  min-width: 220px;
+  height: 36px;
+  margin: 5px;
+  padding: 3px;
+  transition: border 0.3s ease;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  &__active {
+    color: #1bd4b3;
+  }
+
+  &:hover {
+    border: 1px solid white;
+  }
+}
+
+.images_wrapper {
+  position: relative;
+}
+
+.track_image {
+  width: 36px;
+  height: 36px;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.artist_title {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 19.6px;
+  text-align: left;
+}
+
+.track_title {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16.8px;
+  text-align: left;
+}
+
+.track_name_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding-left: 7px;
+  width: calc(100% - 72px);
+}
+
+.track_time {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16.8px;
+  text-align: left;
+}
+
+.track_time_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+}
+
+.play_pause {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(1px);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #01a089;
+  font-size: 20px;
+  transition: width 0.5s ease-in-out;
+}

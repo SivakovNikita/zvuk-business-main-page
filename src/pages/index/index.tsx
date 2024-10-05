@@ -11,12 +11,12 @@ function MyApp() {
     <>
       <Header />
       <div id="portal"></div>
-      <MainBlock />
-      <TariffsBlock />
       <PlayerBlock />
+      {/* <MainBlock />
+      <TariffsBlock />
       <SalseCardsBlock />
       <ResultsBlock />
-      <FAQBlock />
+      <FAQBlock /> */}
     </>
   );
 }

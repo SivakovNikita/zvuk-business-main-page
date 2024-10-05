@@ -1,15 +1,18 @@
-import styles from './Player.module.scss';
+import styles from './PlayerBar.module.scss';
 import { usePlayer } from './usePalyer';
+import useMediaSession from './useMediaSession';
+import getFormattedTime from './getFormattedTime';
 import { FaPlay, FaPause } from 'react-icons/fa';
 import { FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
-import getFormattedTime from './getFormattedTime';
 import { TbPlayerTrackNextFilled, TbPlayerTrackPrevFilled } from 'react-icons/tb';
 import ProgressBar from '../ProgressBar/ProgressBar';
-import useMediaSession from './useMediaSession';
 import { trackList } from './trackList/trackList';
 import clsx from 'clsx';
 import Timer from '../Timer/Timer';
 import { useMemo } from 'react';
+import React from 'react';
+import Tracklist from '../TrackList/TrackList';
+import { TrackProvider } from './TrackContex';
 
 const PlayerBar = () => {
   const {
@@ -73,7 +76,7 @@ const PlayerBar = () => {
         <button className={styles.btn_play_pause} onClick={isPlaying ? pause : play}>
           {isPlaying ? <FaPause /> : <FaPlay />}
         </button>
-        <button className={styles.btn_navigate} onClick={next} disabled={isNextDisabled}>
+        <button className={styles.btn_navigate} onClick={() => next()} disabled={isNextDisabled}>
           <TbPlayerTrackNextFilled />
         </button>
       </div>
@@ -96,6 +99,16 @@ const PlayerBar = () => {
           </div>
         </div>
       </div>
+      <TrackProvider
+        trackList={trackList}
+        play={play}
+        pause={pause}
+        next={next}
+        state={isPlaying}
+        currentIndex={currentTrackIndex}
+      >
+        <Tracklist />
+      </TrackProvider>
     </div>
   );
 };

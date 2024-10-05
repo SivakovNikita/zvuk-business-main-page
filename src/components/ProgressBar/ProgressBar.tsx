@@ -1,13 +1,13 @@
 import { useRef, useState, useEffect } from 'react';
 import styles from './ProgressBar.module.scss';
+import React from 'react';
 
 interface ProgressBarProps {
   currentTime: number;
   duration: number;
   onSeek: (time: number) => void;
 }
-
-const ProgressBar = ({ currentTime, duration, onSeek }: ProgressBarProps) => {
+const ProgressBar = React.memo(({ currentTime, duration, onSeek }: ProgressBarProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const dragginTimeRef = useRef<number | null>(null);
   const [dragginTime, setDragginTime] = useState<number | null>(null);
@@ -52,6 +52,6 @@ const ProgressBar = ({ currentTime, duration, onSeek }: ProgressBarProps) => {
       <div className={styles.track_progress} style={{ width: `${calculatedWidth}%` }}></div>
     </div>
   );
-};
+});
 
 export default ProgressBar;
