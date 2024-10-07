@@ -90,3 +90,22 @@
   font-size: 20px;
   transition: width 0.5s ease-in-out;
 }
+
+.play_pause__mobile {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #01a089;
+  font-size: 20px;
+  transition: width 0.5s ease-in-out;
+}

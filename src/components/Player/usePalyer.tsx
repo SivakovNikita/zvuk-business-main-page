@@ -154,7 +154,6 @@ export const usePlayer = <T extends { src: string }>({
     const handlePlayStop = () => {
       setIsPlaying(!audio.paused);
     };
-
     audio.addEventListener('play', handlePlayStop);
     audio.addEventListener('pause', handlePlayStop);
     audio.addEventListener('loadedmetadata', handleLoadedMetadata);
