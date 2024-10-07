@@ -29,17 +29,6 @@ export const usePlayer = <T extends { src: string }>({
     };
   }, []);
 
-  const adjustVolume = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      if (!audio) return;
-
-      const volumeValue = Number(event.target.value);
-      audio.volume = volumeValue;
-      setcurrentVolume(volumeValue);
-    },
-    [audio],
-  );
-
   const play = useCallback(() => {
     if (audio) {
       if (audio.readyState === HTMLMediaElement.HAVE_NOTHING) {
@@ -86,28 +75,28 @@ export const usePlayer = <T extends { src: string }>({
     [audio],
   );
 
-  const next = useCallback(
-    async (index?: number) => {
-      let newIndex;
-      if (index != null) {
-        newIndex = index;
-      } else {
-        newIndex = currentTrackIndex + 1;
-      }
-
-      if (newIndex >= queue.length) {
-        if (repeat === 'all') {
-          newIndex = 0;
-        } else {
-          return audio?.pause();
-        }
-      }
-
-      setCurrentTrackIndex(newIndex);
-      await loadAndPlay(queue[newIndex].src);
+  const setNext = useCallback(
+    async (index: number) => {
+      setCurrentTrackIndex(index);
+      await loadAndPlay(queue[index].src);
     },
     [currentTrackIndex, queue, repeat, loadAndPlay, audio],
   );
+
+  const next = useCallback(async () => {
+    let newIndex = currentTrackIndex + 1;
+
+    if (newIndex >= queue.length) {
+      if (repeat === 'all') {
+        newIndex = 0;
+      } else {
+        return audio?.pause();
+      }
+    }
+
+    setCurrentTrackIndex(newIndex);
+    await loadAndPlay(queue[newIndex].src);
+  }, [currentTrackIndex, queue, repeat, loadAndPlay, audio]);
 
   const prev = useCallback(async () => {
     let newIndex = currentTrackIndex - 1;
@@ -130,6 +119,14 @@ export const usePlayer = <T extends { src: string }>({
     if (audio) {
       audio.currentTime = time;
       setCurrentTrackDuration(time);
+    }
+  };
+
+  const adjustVolume = (volume: number) => {
+    if (audio) {
+      const volumeValue = Number(volume);
+      audio.volume = volumeValue;
+      setcurrentVolume(volumeValue);
     }
   };
 
@@ -187,6 +184,7 @@ export const usePlayer = <T extends { src: string }>({
     pause,
     play,
     next,
+    setNext,
     prev,
     adjustVolume,
     handleSeek,

@@ -79,41 +79,19 @@
   }
 }
 
+.controls_container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  width: 100%;
+  min-width: 600px;
+}
+
 .controls_wrapper {
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 10px;
-}
-
-.volume_control {
-  position: relative;
-  display: flex;
-  align-items: center;
-  &:hover {
-    .volume_slider {
-      opacity: 1;
-    }
-  }
-}
-
-.icon_wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.volume_slider {
-  accent-color: #00b399;
-  position: absolute;
-  left: -150%;
-  top: -280%;
-  transform: translateY(-50%) rotate(-90deg);
-  outline: none;
-  margin: 10px 0;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  width: 100px;
-  height: 8px;
 }

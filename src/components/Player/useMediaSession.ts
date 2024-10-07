@@ -50,6 +50,7 @@ const useMediaSession = (props: MediaSessionProps) => {
       events.forEach((event) => {
         try {
           mediaSession.setActionHandler(event.action, event.handler);
+          console.log(event.action, event.handler);
         } catch (error) {
           console.log(error.name);
         }
