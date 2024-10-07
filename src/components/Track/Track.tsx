@@ -34,14 +34,17 @@ const Track = ({ track, index }) => {
     >
       <div className={styles.images_wrapper}>
         {showPlayButton ? (
-          <button className={styles.play_pause} onClick={() => next(index)}>
+          <button className={styles.play_pause} onClick={() => next(index)} onTouchStart={() => next(index)}>
             <FaPlay />
           </button>
         ) : null}
 
-        <img className={styles.track_image} src={track.img[0].src} alt={'Музыка для бизнеса :' + track.artist} />
         {playing ? (
-          <button className={styles.play_pause} onClick={state ? () => pause() : () => play()}>
+          <button
+            className={styles.play_pause}
+            onClick={state ? () => pause() : () => play()}
+            onTouchStart={state ? () => pause() : () => play()}
+          >
             {state ? !isHovered ? <Equalizer /> : <FaPause /> : <FaPlay />}
           </button>
         ) : null}
