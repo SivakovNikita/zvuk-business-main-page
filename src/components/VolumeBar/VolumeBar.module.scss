@@ -1,13 +1,17 @@
 .volume_control_container {
   max-width: 85px;
+  min-width: 30px;
+  width: 30%;
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 5px;
+  @media (max-width: 430px) {
+    display: none;
+  }
 }
 
 .volume_bar {
-  min-width: 80px;
   width: 100%;
   height: 5px;
   border-radius: 5px;

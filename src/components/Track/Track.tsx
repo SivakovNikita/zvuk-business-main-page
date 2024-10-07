@@ -26,12 +26,6 @@ const Track = ({ track, index }) => {
   const currentTrackNotPlaying = isCurrent && !playing;
   const showPlayButton = (isHovered && !isCurrent) || (isHovered && currentTrackNotPlaying);
 
-  // не активен
-  // выбран по индексу но не играет
-  // активен и играет Волны
-  // активен и не играет Плей
-  // активен и ховер Пауза
-
   return (
     <div
       className={clsx({ [styles.track_wrapper]: true, [styles.track_wrapper__active]: isPlaying })}

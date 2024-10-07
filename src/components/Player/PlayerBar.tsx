@@ -6,7 +6,7 @@ import { TbPlayerTrackNextFilled, TbPlayerTrackPrevFilled } from 'react-icons/tb
 import ProgressBar from '../ProgressBar/ProgressBar';
 import { trackList } from './trackList/trackList';
 import clsx from 'clsx';
-import { useCallback, useMemo } from 'react';
+import { useMemo } from 'react';
 import React from 'react';
 import Tracklist from '../TrackList/TrackList';
 import { TrackProvider } from './TrackContex';
@@ -82,11 +82,12 @@ const PlayerBar = () => {
           </button>
         </div>
         <div className={styles.controls_wrapper}>
-          <TimerBar currentTrackDuration={currentTrackDuration} duration={trackDuration} />
+          {/* <TimerBar currentTrackDuration={currentTrackDuration} duration={trackDuration} /> */}
           <ProgressBar currentTime={currentTrackDuration} duration={trackDuration} onSeek={handleSeek} />
         </div>
         <VolumeBar currentVolume={currentVolume} adjustVolume={adjustVolume} />
       </div>
+
       <TrackProvider
         trackList={trackList}
         play={play}
