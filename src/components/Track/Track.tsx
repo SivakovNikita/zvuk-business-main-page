@@ -32,9 +32,9 @@ const Track = ({ track, index }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className={styles.images_wrapper}>
+      <div className={styles.images_wrapper} onTouchStart={() => next(index)}>
         {showPlayButton ? (
-          <button className={styles.play_pause} onClick={() => next(index)} onTouchStart={() => next(index)}>
+          <button className={styles.play_pause} onClick={() => next(index)}>
             <FaPlay />
           </button>
         ) : null}
