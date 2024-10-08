@@ -1,34 +1,33 @@
 @font-face {
-    font-family: "SBSansDisplay-Light";
-    src: url("./fonts/SBSansDisplay-Light.woff") format("woff");
+  font-family: 'SBSansDisplay-Light';
+  src: url('./fonts/SBSansDisplay-Light.woff') format('woff');
 }
 
 @font-face {
-    font-family: "SBSansDisplay-Regular";
-    src: url("./fonts/SBSansDisplay-Regular.woff") format("woff");
+  font-family: 'SBSansDisplay-Regular';
+  src: url('./fonts/SBSansDisplay-Regular.woff') format('woff');
 }
 
 @font-face {
-    font-family: "SBSansText-Regular";
-    src: url("./fonts/SBSansText-Regular.woff2") format("woff2");
+  font-family: 'SBSansText-Regular';
+  src: url('./fonts/SBSansText-Regular.woff2') format('woff2');
 }
 
 body {
-    background-color: black;
-    font-family: "SBSansDisplay-Light";
+  background-color: black;
+  font-family: 'SBSansDisplay-Light';
 }
 
 .heading_h3 {
-    font-family: "SBSansText-Regular";
-    font-weight: lighter;
-    color: white;
+  font-family: 'SBSansText-Regular';
+  font-weight: lighter;
+  color: white;
 }
 
 a {
+  color: #00b399;
+  &:hover {
     color: #00b399;
-    &:hover {
-        color: #00b399;
-        text-decoration: none;
-    }
+    text-decoration: none;
+  }
 }
-

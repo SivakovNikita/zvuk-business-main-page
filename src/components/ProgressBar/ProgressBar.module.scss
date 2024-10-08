@@ -1,16 +1,19 @@
 .progress_bar {
+  position: relative;
   min-width: 80px;
   width: 100%;
-  height: 10px;
-  margin: 0 0 0 15px;
+  height: 5px;
   border-radius: 5px;
-  background-color: lightslategrey;
+  background-color: #abaab0;
   cursor: pointer;
+  @media (max-width: 430px) {
+    height: 8px;
+  }
 }
 
 .track_progress {
   width: var(--track_progress-width);
   height: 100%;
-  background-color: #00b399;
+  background-color: white;
   border-radius: 5px;
 }

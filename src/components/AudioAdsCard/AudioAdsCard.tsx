@@ -4,15 +4,15 @@ import styles from './AudioAdsCard.module.scss';
 
 interface AudioAdsCardProps {
   cardData: {
-    headingText: string;
-    subHeadingText: string;
-    headingNumber: string;
-    id: number;
-    btnText: string;
-    btnHref: string;
-    backgroundImg: string;
-    backgroundСolor: string;
-    imageContentSrc: string;
+    headingText?: string;
+    subHeadingText?: string;
+    headingNumber?: string;
+    id?: number;
+    btnText?: string;
+    btnHref?: string;
+    backgroundImg?: string;
+    backgroundСolor?: string;
+    imageContentSrc?: string;
   };
 }
 
@@ -25,31 +25,33 @@ const AudioAdsCard = ({ cardData }: AudioAdsCardProps) => {
       className={styles.container}
       style={
         {
-          '--bg-img-src': `url(${cardData.backgroundImg})`,
-          '--bg-color': `${cardData.backgroundСolor}`,
+          '--bg-img-src': cardData.backgroundImg ? `url(${cardData.backgroundImg})` : 'none',
+          '--bg-color': cardData.backgroundСolor || 'transparent',
         } as React.CSSProperties
       }
       key={cardData.id}
     >
-      <span className={styles.card_heading_number}>{cardData.headingNumber}</span>
-      <span className={styles.card_heading}>{cardData.headingText}</span>
-      <span className={styles.card_subheading}>{cardData.subHeadingText}</span>
-      {hasImage ? (
+      {cardData.headingNumber && <span className={styles.card_heading_number}>{cardData.headingNumber}</span>}
+      {cardData.headingText && <span className={styles.card_heading}>{cardData.headingText}</span>}
+      {cardData.subHeadingText && <span className={styles.card_subheading}>{cardData.subHeadingText}</span>}
+
+      {hasImage && (
         <Image
           className={styles.card_image}
-          src={cardData.imageContentSrc}
+          src={cardData.imageContentSrc as string}
           layout="responsive"
           objectFit="contain"
           width={500}
           height={500}
           alt="Picture"
         />
-      ) : null}
-      {hasButton ? (
+      )}
+
+      {hasButton && (
         <div className={styles.card_button}>
-          <Button text={cardData.btnText} className="button" />
+          <Button text={cardData.btnText as string} className="button" />
         </div>
-      ) : null}
+      )}
     </div>
   );
 };

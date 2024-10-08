@@ -3,7 +3,7 @@ import styles from './Heading.module.scss';
 import { useEffect, useRef, useState } from 'react';
 
 interface HeadingInterface {
-  className: string;
+  className?: string;
   children?: React.ReactNode;
   text: string;
   tag: 'h1' | 'h2' | 'h3' | 'p' | 'span';
@@ -37,7 +37,7 @@ const Heading = ({ className, children, text, tag = 'span' }: HeadingInterface) 
   }, []);
 
   return (
-    <Tag ref={headingRef} className={clsx(styles[className], { [styles.subtitle__visible]: isVisible })}>
+    <Tag ref={headingRef} className={clsx(styles[styles.subtitle], { [styles.subtitle__visible]: isVisible })}>
       {text}
       {children}
     </Tag>

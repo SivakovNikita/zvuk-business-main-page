@@ -4,15 +4,23 @@ import styles from './Track.module.scss';
 import { useContext, useEffect, useState } from 'react';
 import { FaPlay, FaPause } from 'react-icons/fa';
 import Equalizer from '../Equalizer/Equalizer';
+import useWindowWidth from './useWindowWidth';
+import Image from 'next/image';
 
 const Track = ({ track, index }) => {
   const { play, pause, next, state, currentIndex } = useContext(TrackContext);
-  const [isPlaying, setIsPlaying] = useState(state && currentIndex === index);
+  const [isCurrentPlaying, setIsCurrentPlaying] = useState(state && currentIndex === index);
   const [playing, setPlaying] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const isCurrent = currentIndex === index;
+  const showPlayButtonMobile = isCurrent && !state && playing;
+  const currentTrackNotPlaying = isCurrent && !playing;
+  const showPlayButton = (isHovered && !isCurrent) || (isHovered && currentTrackNotPlaying);
+  const width = useWindowWidth();
+  const isMobile = width <= 768;
 
   useEffect(() => {
-    setIsPlaying(state && currentIndex === index);
+    setIsCurrentPlaying(state && currentIndex === index);
   }, [state, currentIndex, index]);
 
   useEffect(() => {
@@ -22,37 +30,58 @@ const Track = ({ track, index }) => {
       setPlaying(false);
     }
   }, [isCurrent, state]);
-  const [isHovered, setIsHovered] = useState(false);
-  const currentTrackNotPlaying = isCurrent && !playing;
-  const showPlayButton = (isHovered && !isCurrent) || (isHovered && currentTrackNotPlaying);
-
-  // не активен
-  // выбран по индексу но не играет
-  // активен и играет Волны
-  // активен и не играет Плей
-  // активен и ховер Пауза
 
   return (
     <div
-      className={clsx({ [styles.track_wrapper]: true, [styles.track_wrapper__active]: isPlaying })}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className={clsx({ [styles.track_wrapper]: true, [styles.track_wrapper__active]: isCurrentPlaying })}
+      onMouseEnter={!isMobile ? () => setIsHovered(true) : undefined}
+      onMouseLeave={!isMobile ? () => setIsHovered(false) : undefined}
     >
-      <div className={styles.images_wrapper}>
-        {showPlayButton ? (
-          <button className={styles.play_pause} onClick={() => next(index)}>
-            <FaPlay />
+      {!isMobile ? (
+        <div className={styles.images_wrapper}>
+          {showPlayButton ? (
+            <button className={styles.play_pause} onClick={() => next(index)}>
+              <FaPlay />
+            </button>
+          ) : null}
+          <Image
+            className={clsx({ [styles.track_image]: true, [styles.track_image__active]: isCurrent && state })}
+            width={30}
+            height={30}
+            src="images/trackCovers/cover playlist.svg"
+            alt={'Музыка для бизнеса:' + track.artist}
+          />
+          {playing ? (
+            <button className={styles.play_pause} onClick={state ? () => pause() : () => play()}>
+              {state ? !isHovered ? <Equalizer /> : <FaPause /> : <FaPlay />}
+            </button>
+          ) : null}
+        </div>
+      ) : (
+        <div className={styles.images_wrapper} onClick={(event) => event.stopPropagation()}>
+          <button
+            className={styles.play_pause__mobile}
+            onClick={(event) => {
+              event.stopPropagation();
+              if (isCurrent) {
+                state ? pause() : play();
+              } else {
+                next(index);
+              }
+            }}
+          >
+            {showPlayButtonMobile ? <FaPlay /> : null}
+            {isCurrent && state ? <Equalizer /> : null}
           </button>
-        ) : null}
-
-        <img className={styles.track_image} src={track.img[0].src} />
-        {playing ? (
-          <button className={styles.play_pause} onClick={state ? () => pause() : () => play()}>
-            {state ? !isHovered ? <Equalizer /> : <FaPause /> : <FaPlay />}
-          </button>
-        ) : null}
-      </div>
-
+          <Image
+            className={clsx({ [styles.track_image]: true, [styles.track_image__active]: isCurrent && state })}
+            width={30}
+            height={30}
+            src="images/trackCovers/cover playlist.svg"
+            alt={'Музыка для бизнеса:' + track.artist}
+          />
+        </div>
+      )}
       <div className={styles.track_name_wrapper}>
         <span className={styles.artist_title}>{track.artist}</span>
         <span className={styles.track_title}>{track.title}</span>

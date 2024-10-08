@@ -1,0 +1,39 @@
+.volume_control_container {
+  max-width: 85px;
+  min-width: 30px;
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  @media (max-width: 430px) {
+    display: none;
+  }
+}
+
+.volume_bar {
+  width: 100%;
+  height: 5px;
+  border-radius: 5px;
+  background-color: #abaab0;
+  cursor: pointer;
+}
+
+.volume_level {
+  width: var(--track_progress-width);
+  height: 100%;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.icon_wrapper {
+  display: flex;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+}
+
+.icon {
+  height: 100px;
+  width: 100px;
+}

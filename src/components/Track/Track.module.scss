@@ -3,11 +3,10 @@
   flex-direction: row;
   justify-content: center;
   color: white;
-  width: 100%;
   max-width: 600px;
   min-width: 220px;
   height: 36px;
-  margin: 5px;
+  margin: 5px 5px 5px 5px;
   padding: 3px;
   transition: border 0.3s ease;
   border: 1px solid black;
@@ -32,6 +31,10 @@
   height: 36px;
   border-radius: 5px;
   z-index: 1;
+  filter: grayscale(100%);
+  &__active {
+    filter: grayscale(0%);
+  }
 }
 
 .artist_title {
@@ -87,7 +90,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #01a089;
+  color: white;
+  font-size: 20px;
+  transition: width 0.5s ease-in-out;
+}
+
+.play_pause__mobile {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
   font-size: 20px;
   transition: width 0.5s ease-in-out;
 }

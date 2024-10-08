@@ -19,9 +19,13 @@
 }
 
 .player_navigation {
+  width: 30%;
   display: flex;
   flex: row;
   gap: 5px;
+  @media (max-width: 430px) {
+    justify-content: center;
+  }
 }
 
 .title {
@@ -62,6 +66,9 @@
   &:hover {
     color: gray;
   }
+  @media (max-width: 430px) {
+    font-size: 68px;
+  }
 }
 
 .btn_navigate {
@@ -77,43 +84,32 @@
   &:hover {
     color: gray;
   }
-}
-
-.controls_wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
-.volume_control {
-  position: relative;
-  display: flex;
-  align-items: center;
-  &:hover {
-    .volume_slider {
-      opacity: 1;
-    }
+  @media (max-width: 430px) {
+    font-size: 68px;
   }
 }
 
-.icon_wrapper {
-  position: relative;
+.controls_container {
   display: flex;
-  align-items: center;
+  flex-direction: row;
+  gap: 20px;
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+  padding-left: 2%;
+  padding-right: 2%;
+  @media (max-width: 430px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
-.volume_slider {
-  accent-color: #00b399;
-  position: absolute;
-  left: -150%;
-  top: -280%;
-  transform: translateY(-50%) rotate(-90deg);
-  outline: none;
-  margin: 10px 0;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  width: 100px;
-  height: 8px;
+.controls_wrapper {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
