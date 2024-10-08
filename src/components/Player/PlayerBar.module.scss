@@ -66,6 +66,9 @@
   &:hover {
     color: gray;
   }
+  @media (max-width: 430px) {
+    font-size: 68px;
+  }
 }
 
 .btn_navigate {
@@ -80,6 +83,9 @@
   color: white;
   &:hover {
     color: gray;
+  }
+  @media (max-width: 430px) {
+    font-size: 68px;
   }
 }
 

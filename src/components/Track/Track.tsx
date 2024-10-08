@@ -5,18 +5,22 @@ import { useContext, useEffect, useState } from 'react';
 import { FaPlay, FaPause } from 'react-icons/fa';
 import Equalizer from '../Equalizer/Equalizer';
 import useWindowWidth from './useWindowWidth';
+import Image from 'next/image';
 
 const Track = ({ track, index }) => {
   const { play, pause, next, state, currentIndex } = useContext(TrackContext);
-  const [isPlaying, setIsPlaying] = useState(state && currentIndex === index);
+  const [isCurrentPlaying, setIsCurrentPlaying] = useState(state && currentIndex === index);
   const [playing, setPlaying] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const isCurrent = currentIndex === index;
-
+  const showPlayButtonMobile = isCurrent && !state && playing;
+  const currentTrackNotPlaying = isCurrent && !playing;
+  const showPlayButton = (isHovered && !isCurrent) || (isHovered && currentTrackNotPlaying);
   const width = useWindowWidth();
   const isMobile = width <= 768;
 
   useEffect(() => {
-    setIsPlaying(state && currentIndex === index);
+    setIsCurrentPlaying(state && currentIndex === index);
   }, [state, currentIndex, index]);
 
   useEffect(() => {
@@ -27,13 +31,9 @@ const Track = ({ track, index }) => {
     }
   }, [isCurrent, state]);
 
-  const [isHovered, setIsHovered] = useState(false);
-  const currentTrackNotPlaying = isCurrent && !playing;
-  const showPlayButton = (isHovered && !isCurrent) || (isHovered && currentTrackNotPlaying);
-
   return (
     <div
-      className={clsx({ [styles.track_wrapper]: true, [styles.track_wrapper__active]: isPlaying })}
+      className={clsx({ [styles.track_wrapper]: true, [styles.track_wrapper__active]: isCurrentPlaying })}
       onMouseEnter={!isMobile ? () => setIsHovered(true) : undefined}
       onMouseLeave={!isMobile ? () => setIsHovered(false) : undefined}
     >
@@ -44,7 +44,13 @@ const Track = ({ track, index }) => {
               <FaPlay />
             </button>
           ) : null}
-          <img className={styles.track_image} src={track.img[0].src} alt={'Музыка для бизнеса :' + track.artist} />
+          <Image
+            className={clsx({ [styles.track_image]: true, [styles.track_image__active]: isCurrent && state })}
+            width={30}
+            height={30}
+            src="images/trackCovers/cover playlist.svg"
+            alt={'Музыка для бизнеса:' + track.artist}
+          />
           {playing ? (
             <button className={styles.play_pause} onClick={state ? () => pause() : () => play()}>
               {state ? !isHovered ? <Equalizer /> : <FaPause /> : <FaPlay />}
@@ -52,7 +58,6 @@ const Track = ({ track, index }) => {
           ) : null}
         </div>
       ) : (
-        // Мобильная версия
         <div className={styles.images_wrapper} onClick={(event) => event.stopPropagation()}>
           <button
             className={styles.play_pause__mobile}
@@ -65,10 +70,16 @@ const Track = ({ track, index }) => {
               }
             }}
           >
+            {showPlayButtonMobile ? <FaPlay /> : null}
             {isCurrent && state ? <Equalizer /> : null}
-            {isCurrent ? !state ? <FaPlay /> : null : null}
           </button>
-          <img className={styles.track_image} src={track.img[0].src} alt={'Музыка для бизнеса :' + track.artist} />
+          <Image
+            className={clsx({ [styles.track_image]: true, [styles.track_image__active]: isCurrent && state })}
+            width={30}
+            height={30}
+            src="images/trackCovers/cover playlist.svg"
+            alt={'Музыка для бизнеса:' + track.artist}
+          />
         </div>
       )}
       <div className={styles.track_name_wrapper}>

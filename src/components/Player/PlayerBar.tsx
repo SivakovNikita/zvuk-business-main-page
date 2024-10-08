@@ -58,7 +58,7 @@ const PlayerBar = () => {
 
   return (
     <div className={styles.player_container}>
-      {/* <div className={styles.player_info}>
+      <div className={styles.player_info}>
         <div className={styles.image_container}>
           <img
             className={clsx({ [styles.image]: true, [styles.image__active]: isPlaying })}
@@ -67,7 +67,7 @@ const PlayerBar = () => {
         </div>
         <span className={styles.title}>{track.title}</span>
         <span className={styles.title}>{track.artist}</span>
-      </div> */}
+      </div>
 
       <div className={styles.controls_container}>
         <div className={styles.player_navigation}>

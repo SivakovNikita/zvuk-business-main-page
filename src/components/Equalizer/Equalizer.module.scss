@@ -12,9 +12,10 @@
 
 .playing__bar {
   display: inline-block;
-  background: #01a089;
-  width: 40%;
+  background: white;
+  width: 3px;
   height: 100%;
+  border-radius: 3px 3px 3px 3px;
   animation: up-and-down 1.3s ease infinite alternate;
 }
 
